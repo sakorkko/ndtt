@@ -1,4 +1,4 @@
-### Network Device Testing Tool
+# Network Device Testing Tool
 
 
 ## Nanopi Neo v1.2
@@ -29,7 +29,7 @@ Testing is currently run with two of the boards chained like so:
 
 All hardware connections are given static ips so no dhcp server is needed
 
-# Master
+### Master
 ```
 /etc/network/interfaces
 iface enx8cae4cf5b7ae inet manual
@@ -43,7 +43,7 @@ iface br0 inet static
 ```
 where enx8cae4cf5b7ae is an usb-to-eth 10/100 adapter
 
-# Slave
+### Slave
 ```
 /etc/network/interfaces
 auto eth0
@@ -52,7 +52,8 @@ iface eth0 inet static
 	netmask 255.255.255.0
 ```
 
-# Laptop
+### Laptop
+```
 /etc/network/interfaces
 enp3s0
 allow-hotplug enp3s0
