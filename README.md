@@ -2,6 +2,7 @@
 
 * [Linux images](#linux-images)
 * [Installing image](#installing-the-image-to-an-sd-card)
+* [Serial connection for initial configuration](#serial-connection-for-initial-configuration)
 * [Network configuration](#network-configuration)
     * [Master](#master)
     * [Slave](#slave)
@@ -103,7 +104,8 @@ Kernel version 4.1 or newer.
 ```
 Extends the "classic" BPF programmable tc classifier by extending its scope also to native eBPF code, thus allowing userspace to implement own custom, 'safe' C like classifiers that can then be compiled with the LLVM eBPF backend to an eBPF elf file and loaded into the kernel via iproute2's tc, and be JITed in the kernel
 ```
-We updated the master to a fresh armbian install, as eBPF supports connections to traffic control classifiers. We thought it necessary.
+Running on neo ubuntu core xenial 4.11.2.
 
 # Roadblocks
+We updated the master to a fresh armbian install with kernel version 4.11.8, as eBPF supports connections to traffic control classifiers. It resulted in a kernel error. We didn't investigate further.
 
