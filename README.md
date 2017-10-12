@@ -100,5 +100,7 @@ where enp3s0 is eth0
 
 Kernel version 4.1 or newer.
 ```
-We updated the master to a fresh armbian install, as eBPF supports connections to traffic control classifiers. We thought it necessary.
+Extends the "classic" BPF programmable tc classifier by extending its scope also to native eBPF code, thus allowing userspace to implement own custom, 'safe' C like classifiers that can then be compiled with the LLVM eBPF backend to an eBPF elf file and loaded into the kernel via iproute2's tc, and be JITed in the kernel
 ```
+We updated the master to a fresh armbian install, as eBPF supports connections to traffic control classifiers. We thought it necessary.
+
