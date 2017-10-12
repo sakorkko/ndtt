@@ -8,6 +8,7 @@
     * [Laptop](#laptop)
 * [eBPF](#ebpf)
     * [Dependencies](#dependencies)
+* [Roadblocks](#roadblocks)
 
 # Network Device Testing Tool
 
@@ -103,4 +104,6 @@ Kernel version 4.1 or newer.
 Extends the "classic" BPF programmable tc classifier by extending its scope also to native eBPF code, thus allowing userspace to implement own custom, 'safe' C like classifiers that can then be compiled with the LLVM eBPF backend to an eBPF elf file and loaded into the kernel via iproute2's tc, and be JITed in the kernel
 ```
 We updated the master to a fresh armbian install, as eBPF supports connections to traffic control classifiers. We thought it necessary.
+
+# Roadblocks
 
