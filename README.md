@@ -6,7 +6,8 @@
     * [Master](#master)
     * [Slave](#slave)
     * [Laptop](#laptop)
-
+* [eBPF](#ebpf)
+    * [Dependencies](#dependencties)
 
 # Network Device Testing Tool
 
@@ -85,6 +86,12 @@ iface enp3s0 inet static
 ```
 where enp3s0 is eth0
 
+# eBPF
 
+## Dependencies
 
+Kernel version 4.1 or newer. 
+```
+We updated the master to a fresh armbian install, as eBPF supports connections to traffic control classifiers. We thought it necessary.
+```
 
