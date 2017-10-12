@@ -25,6 +25,18 @@ https://dl.armbian.com/nanopineo/Ubuntu_xenial_default.7z
 We will have to see if we need to switch images later
 
 
+## Installing the image to a sd card
+
+On linux first you can check the path to your card with: 
+```
+lsblk
+```
+Then you can use dd to install the image
+```
+sudo dd if=/path/to/image.img of=/dev/mmcblk0 bs=16M
+```
+
+
 ## Network configuration
 
 Testing is currently run with two of the boards chained like so:
