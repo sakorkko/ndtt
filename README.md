@@ -7,7 +7,7 @@
     * [Slave](#slave)
     * [Laptop](#laptop)
 * [eBPF](#ebpf)
-    * [Dependencies](#dependencties)
+    * [Dependencies](#dependencies)
 
 # Network Device Testing Tool
 
@@ -34,7 +34,7 @@ We will have to see if we need to switch images later
 
 ## Installing the image to an sd card
 
-On linux first you can check the path to your card with: 
+On linux first you can check the path to your card with:
 ```
 lsblk
 ```
@@ -44,6 +44,13 @@ sudo dd if=/path/to/image.img of=/dev/mmcblk0 bs=16M
 ```
 
 
+## Serial connection for intial configuration
+
+Minicom seems to work on linux and Putty on windows.
+Settings used are: 115200 baudrate, 8N1, NOR
+Com ports on linux usually are on /dev/ttyUSBX, where X is 0-3
+
+
 ## Network configuration
 
 Testing is currently run with two of the boards chained like so:
@@ -51,6 +58,7 @@ Testing is currently run with two of the boards chained like so:
 	internet --(wlan)-- laptop --- master --- slave
 
 All hardware connections are given static ips so no dhcp server is needed
+
 
 ### Master
 ```
@@ -90,8 +98,7 @@ where enp3s0 is eth0
 
 ## Dependencies
 
-Kernel version 4.1 or newer. 
+Kernel version 4.1 or newer.
 ```
 We updated the master to a fresh armbian install, as eBPF supports connections to traffic control classifiers. We thought it necessary.
 ```
-
