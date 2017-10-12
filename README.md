@@ -1,6 +1,9 @@
 [Linux images](#linux-images)
-[Master](#master)
-
+[Installing image](#installing-the-image-to-an-sd-card)
+[Network configuration](#network-configuration)
+* [Master](#master)
+* [Slave](#slave)
+* [Laptop](#laptop)
 
 # Network Device Testing Tool
 
@@ -25,7 +28,7 @@ https://dl.armbian.com/nanopineo/Ubuntu_xenial_default.7z
 We will have to see if we need to switch images later
 
 
-## Installing the image to a sd card
+## Installing the image to an sd card
 
 On linux first you can check the path to your card with: 
 ```
