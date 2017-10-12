@@ -43,6 +43,13 @@ sudo dd if=/path/to/image.img of=/dev/mmcblk0 bs=16M
 ```
 
 
+## Serial connection for intial configuration
+
+Minicom seems to work on linux and Putty on windows.
+Settings used are: 115200 baudrate, 8N1, NOR
+Com ports on linux usually are on /dev/ttyUSBX, where X is 0-3
+
+
 ## Network configuration
 
 Testing is currently run with two of the boards chained like so:
@@ -50,6 +57,7 @@ Testing is currently run with two of the boards chained like so:
 	internet --(wlan)-- laptop --- master --- slave
 
 All hardware connections are given static ips so no dhcp server is needed
+
 
 ### Master
 ```
