@@ -1,12 +1,12 @@
 # Contents
-```
+
 * [Linux images](#linux-images)
 * [Installing image](#installing-the-image-to-an-sd-card)
 * [Network configuration](#network-configuration)
-* [Master](#master)
-* [Slave](#slave)
-* [Laptop](#laptop)
-```
+** [Master](#master)
+** [Slave](#slave)
+** [Laptop](#laptop)
+
 
 # Network Device Testing Tool
 
