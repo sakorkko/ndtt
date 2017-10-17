@@ -107,5 +107,4 @@ Extends the "classic" BPF programmable tc classifier by extending its scope also
 Running on neo ubuntu core xenial 4.11.2.
 
 # Roadblocks
-We updated the master to a fresh armbian install with kernel version 4.11.8, as eBPF supports connections to traffic control classifiers. It resulted in a kernel error. We didn't investigate further.
-
+We updated the master to a fresh armbian install with kernel version 4.11.8, as eBPF supports connections to traffic control classifiers. It resulted in a kernel error. Kernel error occurs on both mainline armbian and neo ubuntu xenial. We will have to see if kernel version 3.x is enough for the project.
