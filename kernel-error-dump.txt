@@ -1,0 +1,170 @@
+root@nanopineo:~# [  369.483983] ------------[ cut here ]------------
+[  369.488681] kernel BUG at net/core/dev.c:2591!
+[  369.493159] Internal error: Oops - BUG: 0 [#1] SMP THUMB2
+[  369.498588] Modules linked in: evdev sun8i_codec_analog snd_soc_core snd_pcm_dmaengine snd_pce
+[  369.514764] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 4.11.8-sun8i #13
+[  369.521324] Hardware name: Allwinner sun8i Family
+[  369.526063] task: c0b07680 task.stack: c0b00000
+[  369.530648] PC is at skb_checksum_help+0xd8/0xe0
+[  369.535309] LR is at validate_xmit_skb+0x16f/0x1f8
+[  369.540143] pc : [<c060dc58>]    lr : [<c0611cb3>]    psr: 000d0133
+[  369.540143] sp : c0b01b88  ip : 00000000  fp : 0000003c
+[  369.551671] r10: 00000000  r9 : de20f000  r8 : 00000000
+[  369.556931] r7 : 00000000  r6 : ffffffbe  r5 : dd416d40  r4 : dd6cecc0
+[  369.563496] r3 : 00000042  r2 : 0000003c  r1 : 0000003c  r0 : dd416500
+[  369.570065] Flags: nzcv  IRQs on  FIQs on  Mode SVC_32  ISA Thumb  Segment none
+[  369.577416] Control: 50c5387d  Table: 5d6e406a  DAC: 00000051
+[  369.583187] Process swapper/0 (pid: 0, stack limit = 0xc0b00210)
+[  369.589229] Stack: (0xc0b01b88 to 0xc0b02000)
+[  369.593635] 1b80:                   dd6cecc0 dd416d40 00000000 c0611cb3 c0b01da0 00000000
+[  369.601869] 1ba0: 00000000 00000000 dd6cecc0 de20f000 00000000 00000000 00000000 c0611d67
+[  369.610142] 1bc0: de19b700 c9e1da50 dd6cecc0 de20f000 c9e1da00 c062c5f9 00000000 00000010
+[  369.618439] 1be0: de1b3400 c9e1da50 c9e1da00 00000000 00000000 00000c5d 00000000 c06122b5
+[  369.626735] 1c00: c9e1da50 00000001 00000000 c9e1da50 00000c21 00000000 0000003c 00000000
+[  369.635032] 1c20: 01080020 fffffff4 00000000 00000000 dd019680 dd6cecc0 dd6cecc0 00000000
+[  369.643328] 1c40: dc830580 00000001 dd416542 00000000 dd416500 c06c855f 00000000 c0b57e00
+[  369.651625] 1c60: dd6cecc0 00000000 dc830580 c06c8617 01080020 00000000 c0b57e00 dd6cecc0
+[  369.659922] 1c80: dd019680 c06c74cf dd6cecc0 c9e1c000 00000000 c0b57e00 dd6cecc0 00000002
+[  369.668219] 1ca0: dc830580 c06c86b7 00000000 dd79a400 c9e1c000 dd6c6b40 01080020 dc830000
+[  369.676516] 1cc0: dd6cecc0 dd6c6b40 dc830000 c9e1c000 00000000 dc830000 dc830580 c06c86eb
+[  369.684812] 1ce0: dd6c6b40 dd79a400 00000002 c06c9567 00000000 00000000 00000400 00000000
+[  369.693109] 1d00: 00000000 dd416558 0432a8c0 00000000 00000000 0532a8c0 de032600 dd6c6b40
+[  369.701407] 1d20: c0b57e00 c0b01d8c dd416542 00000042 dd416500 dd79a400 dcfd9000 c06c99ad
+[  369.709700] 1d40: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[  369.717998] 1d60: dd6c6b40 c0b01d8c 00000001 c0b04ecc 0000a888 01080020 c06c9889 c060def9
+[  369.726294] 1d80: 1f510000 00000000 00000482 dd6c6b40 00000002 dec45000 669fb600 14ce56eb
+[  369.734591] 1da0: 8acee674 dd6c6b40 dd6c6b40 dcfd9000 00000000 c0b04ecc dd6c6b40 dcfd9000
+[  369.742887] 1dc0: 00000000 00000000 dcfd9598 00000040 00000001 c060fbf5 dcfd9598 dcfd9000
+[  369.751183] 1de0: 00000000 00000000 dcfd9598 dd6c6b40 00000003 c0610469 80000000 00000008
+[  369.759478] 1e00: 00000002 c052e5a1 00000000 00000000 29aaaaab dcfd9580 0000003c 00000020
+[  369.767775] 1e20: 00000040 c0701470 dd6c6b40 00000008 00000000 dcfd9598 00001b25 0000012c
+[  369.776072] 1e40: dff67580 00000040 c0b01e70 c0b02d00 1f510000 c060fe8f c0a57580 c0b5fc6a
+[  369.784370] 1e60: c0b04ecc c0908034 c090c050 c052d5cf c0b01e70 c0b01e70 c0b01e78 c0b01e78
+[  369.792668] 1e80: c0b01ec4 00000000 00000003 c0b0208c ffffe000 00000100 4000001f 40000003
+[  369.800965] 1ea0: c0b02080 c011bd57 1f510000 00000000 00000001 c0b02080 c0a4f360 c0b62980
+[  369.809262] 1ec0: 0000000a 00001b24 c0b02d00 00200102 de01aa60 c0b01ef8 00000000 00000016
+[  369.817557] 1ee0: 00000000 00000001 de00cc00 00000000 00000000 c011c059 c0a54e7c c0157083
+[  369.825855] 1f00: c0b01f40 c0b04340 c0b279ac e080200c e0802000 c0b01f40 e0803000 c0101335
+[  369.834153] 1f20: c0106a5d c0106a5e 400d0033 ffffffff c0b01f74 c0b12ba8 c0b00000 c0109925
+[  369.842449] 1f40: 00000001 00000000 00000000 c0114141 ffffe000 c0b03fcc c0b03f6c c0a55fc8
+[  369.850746] 1f60: c0b12ba8 00000000 00000000 00000000 01400000 c0b01f90 c0106a5d c0106a5e
+[  369.859041] 1f80: 400d0033 ffffffff 00000051 00000000 00000000 c0149bdb 000000bb 00000001
+[  369.867338] 1fa0: c0b03f40 ffffffff c0b62000 c0a3aa30 dffffa80 c0149dfb 00000001 c0a009ed
+[  369.875635] 1fc0: ffffffff ffffffff 00000000 c0a00579 00000000 c0a3aa30 c0b62294 c0b03f58
+[  369.883932] 1fe0: c0a3aa2c c0b091d0 4000406a 410fc075 00000000 4000807f 00000000 00000000
+[  369.892255] [<c060dc58>] (skb_checksum_help) from [<c0611cb3>] (validate_xmit_skb+0x16f/0x1f8)
+[  369.901000] [<c0611cb3>] (validate_xmit_skb) from [<c0611d67>] (validate_xmit_skb_list+0x2b/0)
+[  369.910006] [<c0611d67>] (validate_xmit_skb_list) from [<c062c5f9>] (sch_direct_xmit+0x6d/0x1)
+[  369.918923] [<c062c5f9>] (sch_direct_xmit) from [<c06122b5>] (__dev_queue_xmit+0x3e1/0x540)
+[  369.927408] [<c06122b5>] (__dev_queue_xmit) from [<c06c855f>] (br_dev_queue_push_xmit+0x6b/0x)
+[  369.936325] [<c06c855f>] (br_dev_queue_push_xmit) from [<c06c8617>] (br_forward_finish+0x4f/0)
+[  369.945322] [<c06c8617>] (br_forward_finish) from [<c06c86b7>] (__br_forward+0x9b/0xac)
+[  369.953449] [<c06c86b7>] (__br_forward) from [<c06c86eb>] (deliver_clone+0x23/0x38)
+[  369.961231] [<c06c86eb>] (deliver_clone) from [<c06c9567>] (br_handle_frame_finish+0xcf/0x384)
+[  369.969973] [<c06c9567>] (br_handle_frame_finish) from [<c06c99ad>] (br_handle_frame+0x125/0x)
+[  369.978973] [<c06c99ad>] (br_handle_frame) from [<c060def9>] (__netif_receive_skb_core+0x1a1/)
+[  369.988146] [<c060def9>] (__netif_receive_skb_core) from [<c060fbf5>] (netif_receive_skb_inte)
+[  369.998104] [<c060fbf5>] (netif_receive_skb_internal) from [<c0610469>] (napi_gro_receive+0x9)
+[  370.007370] [<c0610469>] (napi_gro_receive) from [<c052e5a1>] (sun8i_emac_poll+0x525/0x568)
+[  370.015852] [<c052e5a1>] (sun8i_emac_poll) from [<c060fe8f>] (net_rx_action+0xb3/0x1d0)
+[  370.023990] [<c060fe8f>] (net_rx_action) from [<c011bd57>] (__do_softirq+0xa7/0x1a0)
+[  370.031864] [<c011bd57>] (__do_softirq) from [<c011c059>] (irq_exit+0x8d/0xdc)
+[  370.039216] [<c011c059>] (irq_exit) from [<c0157083>] (__handle_domain_irq+0x43/0x80)
+[  370.047173] [<c0157083>] (__handle_domain_irq) from [<c0101335>] (gic_handle_irq+0x39/0x6c)
+[  370.055648] [<c0101335>] (gic_handle_irq) from [<c0109925>] (__irq_svc+0x65/0x94)
+[  370.063231] Exception stack(0xc0b01f40 to 0xc0b01f88)
+[  370.068366] 1f40: 00000001 00000000 00000000 c0114141 ffffe000 c0b03fcc c0b03f6c c0a55fc8
+[  370.076662] 1f60: c0b12ba8 00000000 00000000 00000000 01400000 c0b01f90 c0106a5d c0106a5e
+[  370.084942] 1f80: 400d0033 ffffffff
+[  370.088522] [<c0109925>] (__irq_svc) from [<c0106a5e>] (arch_cpu_idle+0x22/0x24)
+[  370.096047] [<c0106a5e>] (arch_cpu_idle) from [<c0149bdb>] (do_idle+0x10b/0x164)
+[  370.103565] [<c0149bdb>] (do_idle) from [<c0149dfb>] (cpu_startup_entry+0x13/0x14)
+[  370.111269] [<c0149dfb>] (cpu_startup_entry) from [<c0a009ed>] (start_kernel+0x2ef/0x2fa)
+[  370.119566] Code: ff47 f06f 0015 bd70 (de02) f06f 
+[  370.124428] ---[ end trace 3ef1040c578e6426 ]---
+[  370.129111] Kernel panic - not syncing: Fatal exception in interrupt
+[  370.135555] CPU2: stopping
+[  370.138350] CPU: 2 PID: 0 Comm: swapper/2 Tainted: G      D         4.11.8-sun8i #13
+[  370.146190] Hardware name: Allwinner sun8i Family
+[  370.150992] [<c010bad5>] (unwind_backtrace) from [<c01090df>] (show_stack+0xb/0xc)
+[  370.158695] [<c01090df>] (show_stack) from [<c0463cf5>] (dump_stack+0x69/0x78)
+[  370.166045] [<c0463cf5>] (dump_stack) from [<c010b14d>] (handle_IPI+0x141/0x158)
+[  370.173562] [<c010b14d>] (handle_IPI) from [<c0101365>] (gic_handle_irq+0x69/0x6c)
+[  370.181251] [<c0101365>] (gic_handle_irq) from [<c0109925>] (__irq_svc+0x65/0x94)
+[  370.188832] Exception stack(0xde087f78 to 0xde087fc0)
+[  370.193952] 7f60:                                                       00000001 00000000
+[  370.202249] 7f80: 00000000 c0114141 ffffe000 c0b03fcc c0b03f6c c0a55fc8 c0b12ba8 00000000
+[  370.210546] 7fa0: 00000000 00000000 01400000 de087fc8 c0106a5d c0106a5e 40030033 ffffffff
+[  370.218849] [<c0109925>] (__irq_svc) from [<c0106a5e>] (arch_cpu_idle+0x22/0x24)
+[  370.226369] [<c0106a5e>] (arch_cpu_idle) from [<c0149bdb>] (do_idle+0x10b/0x164)
+[  370.233887] [<c0149bdb>] (do_idle) from [<c0149dfb>] (cpu_startup_entry+0x13/0x14)
+[  370.241575] [<c0149dfb>] (cpu_startup_entry) from [<40101411>] (0x40101411)
+[  370.248607] CPU1: stopping
+[  370.251398] CPU: 1 PID: 0 Comm: swapper/1 Tainted: G      D         4.11.8-sun8i #13
+[  370.259237] Hardware name: Allwinner sun8i Family
+[  370.264034] [<c010bad5>] (unwind_backtrace) from [<c01090df>] (show_stack+0xb/0xc)
+[  370.271729] [<c01090df>] (show_stack) from [<c0463cf5>] (dump_stack+0x69/0x78)
+[  370.279076] [<c0463cf5>] (dump_stack) from [<c010b14d>] (handle_IPI+0x141/0x158)
+[  370.286591] [<c010b14d>] (handle_IPI) from [<c0101365>] (gic_handle_irq+0x69/0x6c)
+[  370.294279] [<c0101365>] (gic_handle_irq) from [<c0109925>] (__irq_svc+0x65/0x94)
+[  370.301861] Exception stack(0xde085f78 to 0xde085fc0)
+[  370.306982] 5f60:                                                       00000001 00000000
+[  370.315279] 5f80: 00000000 c0114141 ffffe000 c0b03fcc c0b03f6c c0a55fc8 c0b12ba8 00000000
+[  370.323576] 5fa0: 00000000 00000000 01400000 de085fc8 c0106a5d c0106a5e 400f0033 ffffffff
+[  370.331878] [<c0109925>] (__irq_svc) from [<c0106a5e>] (arch_cpu_idle+0x22/0x24)
+[  370.339399] [<c0106a5e>] (arch_cpu_idle) from [<c0149bdb>] (do_idle+0x10b/0x164)
+[  370.346916] [<c0149bdb>] (do_idle) from [<c0149dfb>] (cpu_startup_entry+0x13/0x14)
+[  370.354603] [<c0149dfb>] (cpu_startup_entry) from [<40101411>] (0x40101411)
+[  370.361634] CPU3: stopping
+[  370.364425] CPU: 3 PID: 0 Comm: swapper/3 Tainted: G      D         4.11.8-sun8i #13
+[  370.372265] Hardware name: Allwinner sun8i Family
+[  370.377061] [<c010bad5>] (unwind_backtrace) from [<c01090df>] (show_stack+0xb/0xc)
+[  370.384757] [<c01090df>] (show_stack) from [<c0463cf5>] (dump_stack+0x69/0x78)
+[  370.392104] [<c0463cf5>] (dump_stack) from [<c010b14d>] (handle_IPI+0x141/0x158)
+[  370.399621] [<c010b14d>] (handle_IPI) from [<c0101365>] (gic_handle_irq+0x69/0x6c)
+[  370.407309] [<c0101365>] (gic_handle_irq) from [<c0109925>] (__irq_svc+0x65/0x94)
+[  370.414890] Exception stack(0xde089f78 to 0xde089fc0)
+[  370.420009] 9f60:                                                       00000001 00000000
+[  370.428306] 9f80: 00000000 c0114141 ffffe000 c0b03fcc c0b03f6c c0a55fc8 c0b12ba8 00000000
+[  370.436603] 9fa0: 00000000 00000000 01400000 de089fc8 c0106a5d c0106a5e 40010033 ffffffff
+[  370.444904] [<c0109925>] (__irq_svc) from [<c0106a5e>] (arch_cpu_idle+0x22/0x24)
+[  370.452426] [<c0106a5e>] (arch_cpu_idle) from [<c0149bdb>] (do_idle+0x10b/0x164)
+[  370.459943] [<c0149bdb>] (do_idle) from [<c0149dfb>] (cpu_startup_entry+0x13/0x14)
+[  370.467629] [<c0149dfb>] (cpu_startup_entry) from [<40101411>] (0x40101411)
+[  370.474680] Rebooting in 10 seconds..
+
+U-Boot SPL 2017.05-armbian (Jul 05 2017 - 06:21:12)
+DRAM: 512 MiB
+Trying to boot from MMC1
+
+
+U-Boot 2017.05-armbian (Jul 05 2017 - 06:21:12 +0200) Allwinner Technology
+
+CPU:   Allwinner H3 (SUN8I 1680)
+Model: FriendlyARM NanoPi NEO
+DRAM:  512 MiB
+MMC:   SUNXI SD/MMC: 0
+*** Warning - bad CRC, using default environment
+
+In:    serial
+Out:   serial
+Err:   serial
+Net:   phy interface0
+eth0: ethernet@1c30000
+Hit any key to stop autoboot:  0 
+38518 bytes read in 140 ms (268.6 KiB/s)
+Unknown command 'bmp' - try 'help'
+switch to partitions #0, OK
+mmc0 is current device
+Scanning mmc 0:1...
+Found U-Boot script /boot/boot.scr
+3565 bytes read in 195 ms (17.6 KiB/s)
+## Executing script at 43100000
+U-boot loaded from SD
+Boot script loaded from mmc
+152 bytes read in 165 ms (0 Bytes/s)
+5099481 bytes read in 656 ms (7.4 MiB/s)
+5819632 bytes read in 727 ms (7.6 MiB/s)
+Found mainline kernel configuration
+25357 bytes read in 513 ms (47.9 KiB/s)
+
