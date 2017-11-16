@@ -12,7 +12,10 @@
     * [Dependencies](#dependencies)
     * [Useful Resources](#useful-resources)
 * [Simple data policing](#simple-data-policing)
+    * [Ingress](#ingress)
+    * [Egress](#egress)
 * [Roadblocks](#roadblocks)
+* [Testing the connection](#benchmarking-the-connection)
 
 # Network Device Testing Tool
 
@@ -30,11 +33,11 @@ https://dl.armbian.com/nanopineo/
 FriendlyArm Ubuntu/Debian
 http://wiki.friendlyarm.com/wiki/
 
-
 We chose Armbian Ubuntu server - legacy kernel
 https://dl.armbian.com/nanopineo/Ubuntu_xenial_default.7z
 
-We will have to see if we need to switch images later
+We will have to see if we need to switch images later.
+There seems to be an issue with our usb-to-eth adapter on the newer kernel versions so we have to use the legacy kernel 3.4.
 
 
 ## Installing the image to an sd card
@@ -60,11 +63,9 @@ Com ports on linux usually are on /dev/ttyUSBX, where X is 0-3
 
 Testing is currently run with two of the boards chained like so:
 
-	internet --[wlan]-- LAPTOP ---  [internal nic]MASTER[usb-to-eth]  --- SLAVE
+	internet--[wlan]---LAPTOP---MASTER---SLAVE
 
-All hardware connections are given static ips so no dhcp server is needed
-
-You must connect the internal nic to the network side of the configuration. Otherwise the master board will produce a kernel error for some reason. 
+All hardware connections are given static ips so no dhcp server is needed 
 
 ### Master
 ```
@@ -92,7 +93,7 @@ iface eth0 inet static
 ### Laptop
 ```
 /etc/network/interfaces
-enp3s0
+auto enp3s0
 allow-hotplug enp3s0
 iface enp3s0 inet static
         address 192.168.50.4
@@ -118,19 +119,75 @@ http://lartc.org/howto/index.html
 ## Simple data policing
 
 http://lartc.org/howto/lartc.qdisc.filters.html
-TODO
+
+We used the eth0 port for the slave side, but if you use the adapter you need to change the interface used in these configs
+We need to configure an ingress policer and an egress data shaping separately if we want to police the rate both ways.
+The bottleneck is located in the interface to the slave side on the master board.
+
+### Ingress
+
+Clear existing policy setups:
+```
+tc qdisc del dev eth0 ingress
+```
+
+Create police rate on ingress:
+```
+tc qdisc add dev eth0 ingress
+tc filter add dev eth0 parent ffff: u32 match u32 0 0 police rate 500kbit burst 100k
+```
+
+tc filter add dev enx8cae4cf5b7ae	# add a filter to a eth interface
+parent ffff:				# parent to attach to
+u32 match u32 0 0			# match all packets
+police rate 500kbit burst 100k		# police rate to 500kbit
+
+
+### Egress
+Clear previous config
+```
+tc qdisc del dev eth0 root
+```
+
+Create shaping rate limiter
+```
+tc qdisc add dev eth0 root tbf rate 500kbit burst 100k latency 100ms
+```
+tc qdisc add dev eth0 root			# add queue discipline to eth0 root
+tbf rate 500kbit burst 100kb latency 100ms 	# token bucket filter rate limiter, max rate 500kbit, bucket size 100kb, latency for dropping 100ms
 
 # Roadblocks
+
 We updated the master to a fresh armbian install with kernel version 4.11.2, as eBPF supports connections to traffic control classifiers. It resulted in a kernel error. Kernel error occurs on both mainline armbian and neo ubuntu xenial. We will have to see if kernel version 3.x is enough for the project.
 
 Kernel error occurs when connecting to the board via SSH. The kernel dumb is attached in kernel-error-dump.txt
 
-## Fix for ssh kernel error
+It appears that if the usb-eth adapter is on the slave side no kernel errors occur. The network configuration is now updated.
 
-It appears that if the usb-eth adapter is on the slave side no kernel errors occur. The network configuration is now updated
+It appears this was not a fix since the kernel error happens again when there is a shh connection between master and slave boards.
+
+### Update
+
+The kernel error seems to be connected to the usb-to-eth adapter or its drivers. Everytime a ssh connection is made over it the adapter, the board connected to it will crash if it contains the newer kernel.
 
 ## Bcc
 
 We found an tool for using eBPF called BCC, but the github page says: "Much of what BCC uses requires Linux 4.1 and above."
 https://github.com/iovisor/bcc
+
+# Benchmarking the connection
+
+install netperf on all devices
+```
+sudo apt-get install netperf
+```
+Start server on laptop for testing the connection from slave to laptop.
+You can also start a server on the slave to test the connection the other way
+```
+netserver -4 -p 16604
+```
+Then you can test the connection by using the netperf command
+```
+netperf -H 192.168.50.6 -p 16604 -l 100
+```
 
