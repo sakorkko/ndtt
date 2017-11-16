@@ -137,24 +137,16 @@ tc qdisc add dev eth0 ingress
 tc filter add dev eth0 parent ffff: u32 match u32 0 0 police rate 500kbit burst 100k
 ```
 
-tc filter add dev enx8cae4cf5b7ae	# add a filter to a eth interface
-parent ffff:				# parent to attach to
-u32 match u32 0 0			# match all packets
-police rate 500kbit burst 100k		# police rate to 500kbit
-
-
 ### Egress
 Clear previous config
 ```
 tc qdisc del dev eth0 root
 ```
 
-Create shaping rate limiter
+Create shaping rate limiter, we will use Token bucket filter.
 ```
 tc qdisc add dev eth0 root tbf rate 500kbit burst 100k latency 100ms
 ```
-tc qdisc add dev eth0 root			# add queue discipline to eth0 root
-tbf rate 500kbit burst 100kb latency 100ms 	# token bucket filter rate limiter, max rate 500kbit, bucket size 100kb, latency for dropping 100ms
 
 # Roadblocks
 
@@ -191,3 +183,7 @@ Then you can test the connection by using the netperf command
 netperf -H 192.168.50.6 -p 16604 -l 100
 ```
 
+Then you can use iftop to monitor the data rates
+```
+iftop
+```
