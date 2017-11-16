@@ -3,7 +3,7 @@
 # Contents
 * [Nanopi Neo v1.2](#nanopi-neo-v1.2)
 * [Linux images](#linux-images)
-* [Installing image](#insstalling-the-image-to-an-sd-card)
+* [Installing image](#installing-the-image-to-an-sd-card)
 * [Serial connection for initial configuration](#serial-connection-for-initial-configuration)
 * [Network configuration](#network-configuration)
     * [Master](#master)
@@ -17,6 +17,8 @@
     * [Egress](#egress)
 * [Roadblocks](#roadblocks)
 * [Testing the connection](#benchmarking-the-connection)
+* [USBIP](#usbip)
+    * [VirtualHere USBIP drivers](#virtualhere-usbip-drivers)
 
 ## Nanopi Neo v1.2
 A board that runs linux similar to the Raspberry pi but more affordable and barebone.
@@ -45,7 +47,7 @@ Then you can use dd to install the image
 sudo dd if=/path/to/image.img of=/dev/mmcblk0 bs=16M
 ```
 
-## Serial connection for intial configuration
+## Serial connection for initial configuration
 Minicom seems to work on linux and Putty on windows.
 Settings used are: 115200 baudrate, 8N1, NOR
 Com ports on linux usually are on /dev/ttyUSBX, where X is 0-3
