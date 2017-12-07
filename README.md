@@ -110,7 +110,7 @@ http://lartc.org/howto/index.html
 ## Simple data policing
 http://lartc.org/howto/lartc.qdisc.filters.html
 
-We used the enx8cae4cf5b7ae interface on the slave side. Ingress and Egress is handled separately but they both are essentially the same configurations. We used Hierarchical Token Bucket bucket for the limiting and classification of packets.
+We used the enx8cae4cf5b7ae interface on the slave side. Ingress and Egress is handled separately but they both are essentially the same configurations. We used Hierarchical Token Bucket bucket for the limiting and classification of packets. Didn't seem to get u32 matching to work for tcp port so instead used iptables to set mark 2 for usbip traffic.
 
 Configuration
 ```
@@ -156,8 +156,6 @@ tc class add dev enx8cae4cf5b7ae parent 1:0 classid 1:2 htb rate 100mbit
 tc class add dev enx8cae4cf5b7ae parent 1:1 classid 1:3 htb rate 128kbit ceil 128kbit
 tc class add dev enx8cae4cf5b7ae parent 1:1 classid 1:4 htb rate 50mbit
 tc filter add dev enx8cae4cf5b7ae parent 1:0 protocol ip handle 1 fw flowid 1:1
-#tc filter add dev enx8cae4cf5b7ae parent 1:1 prio 2 protocol ip u32 match tcp dst 7575 0xffff flowid 1:4
-#tc filter add dev enx8cae4cf5b7ae parent 1:1 prio 1 protocol ip u32 match tcp src 7575 0xffff flowid 1:4
 tc filter add dev enx8cae4cf5b7ae parent 1:1 prio 1 handle 2 fw flowid 1:4
 tc filter add dev enx8cae4cf5b7ae parent 1:1 prio 2 handle 1 fw flowid 1:3
 ```
