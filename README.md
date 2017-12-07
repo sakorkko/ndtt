@@ -13,8 +13,9 @@
     * [Dependencies](#dependencies)
     * [Useful Resources](#useful-resources)
 * [Simple data policing](#simple-data-policing)
-    * [Ingress](#ingress)
-    * [Egress](#egress)
+    * [Mark packets for the tc filters](#mark-packets-for-the-tc-filters)
+    * [Coming from slave](#coming-from-slave)
+    * [Going to slave](#going-to-slave)
 * [Roadblocks](#roadblocks)
 * [Testing the connection](#benchmarking-the-connection)
 * [USBIP](#usbip)
@@ -109,31 +110,56 @@ http://lartc.org/howto/index.html
 ## Simple data policing
 http://lartc.org/howto/lartc.qdisc.filters.html
 
-We used the eth0 port for the slave side, but if you use the adapter you need to change the interface used in these configs
-We need to configure an ingress policer and an egress data shaping separately if we want to police the rate both ways.
-The bottleneck is located in the interface to the slave side on the master board.
+We used the enx8cae4cf5b7ae interface on the slave side. Ingress and Egress is handled separately but they both are essentially the same configurations. We used Hierarchical Token Bucket bucket for the limiting and classification of packets.
 
-### Ingress
-Clear existing policy setups:
+Configuration
 ```
-tc qdisc del dev eth0 ingress
-```
-
-Create police rate on ingress:
-```
-tc qdisc add dev eth0 ingress
-tc filter add dev eth0 parent ffff: u32 match u32 0 0 police rate 500kbit burst 100k
-```
-
-### Egress
-Clear previous config
-```
-tc qdisc del dev eth0 root
+          1:0           root qdisc htb
+         /   \
+        /     \
+      1:2     1:1       child classes: other traffic, slave traffic (mark 1)
+       |     /   \
+       |   1:4   1:3    child classes: usbip traffic (mark 2), testing data traffic
+       |    |     | 
+      20:  40:    |     automatically generated pfifo qdiscs 
+                  |
+                 30:    netem qdisc for testing data  
 ```
 
-Create shaping rate limiter, we will use Token bucket filter.
+### Mark packets for the tc filters
 ```
-tc qdisc add dev eth0 root tbf rate 500kbit burst 100k latency 100ms
+ebtables -A FORWARD -i enx8cae4cf5b7ae -j mark --set-mark 1 --mark-target CONTINUE
+ebtables -A FORWARD -o enx8cae4cf5b7ae -j mark --set-mark 1 --mark-target CONTINUE
+iptables -A FORWARD -p tcp --dport 7575 -j MARK --set-mark 2
+iptables -A FORWARD -p tcp --sport 7575 -j MARK --set-mark 2
+```
+
+### Coming from slave
+
+```
+tc qdisc add dev eth0 parent root handle 1:0 htb default 2
+tc class add dev eth0 parent 1:0 classid 1:1 htb rate 100mbit ceil 100mbit
+tc class add dev eth0 parent 1:0 classid 1:2 htb rate 100mbit
+tc class add dev eth0 parent 1:1 classid 1:3 htb rate 128kbit ceil 128kbit
+tc class add dev eth0 parent 1:1 classid 1:4 htb rate 50mbit
+tc filter add dev eth0 parent 1:0 protocol ip handle 1 fw flowid 1:1
+tc filter add dev eth0 parent 1:1 prio 1 handle 2 fw flowid 1:4
+tc filter add dev eth0 parent 1:1 prio 2 handle 1 fw flowid 1:3
+```
+
+### Going to slave
+
+```
+tc qdisc add dev enx8cae4cf5b7ae parent root handle 1:0 htb default 2
+tc class add dev enx8cae4cf5b7ae parent 1:0 classid 1:1 htb rate 100mbit ceil 100mbit
+tc class add dev enx8cae4cf5b7ae parent 1:0 classid 1:2 htb rate 100mbit
+tc class add dev enx8cae4cf5b7ae parent 1:1 classid 1:3 htb rate 128kbit ceil 128kbit
+tc class add dev enx8cae4cf5b7ae parent 1:1 classid 1:4 htb rate 50mbit
+tc filter add dev enx8cae4cf5b7ae parent 1:0 protocol ip handle 1 fw flowid 1:1
+#tc filter add dev enx8cae4cf5b7ae parent 1:1 prio 2 protocol ip u32 match tcp dst 7575 0xffff flowid 1:4
+#tc filter add dev enx8cae4cf5b7ae parent 1:1 prio 1 protocol ip u32 match tcp src 7575 0xffff flowid 1:4
+tc filter add dev enx8cae4cf5b7ae parent 1:1 prio 1 handle 2 fw flowid 1:4
+tc filter add dev enx8cae4cf5b7ae parent 1:1 prio 2 handle 1 fw flowid 1:3
 ```
 
 # Roadblocks
@@ -168,9 +194,10 @@ Then you can test the connection by using the netperf command
 netperf -H 192.168.50.6 -p 16604 -l 100
 ```
 
-Then you can use iftop to monitor the data rates
+Then you can use iftop or nload to monitor the data rates
 ```
 iftop
+nload
 ```
 
 # USBIP
@@ -178,12 +205,14 @@ iftop
 Server installation instructions from 
 ```
 wget https://virtualhere.com/sites/default/files/usbserver/vhusbdarm
-chmod +x ./vhusbdx86_64
-sudo ./vhusbdx86_64 -b
+chmod +x ./vhusbdarm
+sudo ./vhusbdarm -b
 ```
 Client versions of the software can be downloaded here
 https://virtualhere.com/usb_client_software
 
 After installation and running the executables, it should work straight away.
 
-Performance testing will be updated later.
+TODO: Add server configuration to only use tcp 7575 for to get past policer on the bridge.
+
+Performance testing will be updated later, but at the moment the initial connection seems to take atleast 20 seconds everytime.
