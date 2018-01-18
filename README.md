@@ -107,6 +107,11 @@ Extends the "classic" BPF programmable tc classifier by extending its scope also
 Well explained examples for various network tools in linux:
 http://lartc.org/howto/index.html
 
+Since kernel 3.18, which is usable in the device, eBPF-maps make memory usage between BPF runs possible. 
+"Thanks to eBPF-maps, programs written in eBPF can maintain state and thus aggregate information across events plus have dynamic behavior. Uses of eBPF continue to expanded due to its minimalistic implementation and lightening speed performance. Now onto what to expect for the future of eBPF."
+
+Better explanation with much more in the the article that can be found through this link: https://ferrisellis.com/posts/ebpf_past_present_future/
+
 ## Simple data policing
 http://lartc.org/howto/lartc.qdisc.filters.html
 
