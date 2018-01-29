@@ -172,6 +172,8 @@ Kernel error occurs when connecting to the board via SSH. The kernel dumb is att
 
 It appears this was not a fix since the kernel error happens again when there is a shh connection between master and slave boards.
 
+Just-in-time compiling (JITting) can't be done on 32 bit ARM processor as it has only ARM64 support.
+
 ### Update
 
 The kernel error seems to be connected to the usb-to-eth adapter or its drivers. Everytime a ssh connection is made over it the adapter, the board connected to it will crash if it contains the newer kernel.
