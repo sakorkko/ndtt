@@ -57,9 +57,9 @@ Com ports on linux usually are on /dev/ttyUSBX, where X is 0-3
 ## Network configuration
 Testing is currently run with two of the boards chained like so:
 
-	internet--[wlan]---LAPTOP---MASTER---SLAVE
-
-All hardware connections are given static ips so no dhcp server is needed 
+	internet---router---master---slave
+		      |
+		   laptop
 
 ### Master
 ```
@@ -70,7 +70,7 @@ iface eth0 inet manual
 auto br0
 iface br0 inet static
 	bridge_ports enx8cae4cf5b7ae eth0
-	address 192.168.50.5
+	address 192.168.1.107
 	netmask 255.255.255.0
 ```
 where enx8cae4cf5b7ae is an usb-to-eth 10/100 adapter
@@ -80,7 +80,7 @@ where enx8cae4cf5b7ae is an usb-to-eth 10/100 adapter
 /etc/network/interfaces
 auto eth0
 iface eth0 inet static
-	address 192.168.50.6
+	address 192.168.1.148
 	netmask 255.255.255.0
 ```
 
@@ -90,34 +90,32 @@ iface eth0 inet static
 auto enp3s0
 allow-hotplug enp3s0
 iface enp3s0 inet static
-        address 192.168.50.4
+        address 192.168.1.147
 	netmask 255.255.255.0
 ```
 where enp3s0 is eth0
 
 # eBPF
+Berkeley packet filter. Originally was used for filtering/modifying network packets. Bpf programs were loaded straight to kernelspace for performance and speed. Later in 2014 the extended Berkeley packet filter was created. This time it added support for a lot of things. Notable additions are maps (essentially memory), more hookpoints in different locations, helper functions and bigger registers and stack.
+
+Since kernel 3.18, which is usable in the device, eBPF-maps make memory usage between BPF runs possible. 
+"Thanks to eBPF-maps, programs written in eBPF can maintain state and thus aggregate information across events plus have dynamic behavior. Uses of eBPF continue to expanded due to its minimalistic implementation and lightening speed performance. Now onto what to expect for the future of eBPF."
+
+## Goals with eBpf
+The reason we are using bpf is to learn to use it and to make a filter for packets that drops or modifies every nth packet. The netem queue discipline in tc is not sufficient since it relies on a probability per packet.
 
 ## Dependencies
 Some parts require kernel version 4.1 or newer, we will have to see if the newer things are needed.
 ```
 Extends the "classic" BPF programmable tc classifier by extending its scope also to native eBPF code, thus allowing userspace to implement own custom, 'safe' C like classifiers that can then be compiled with the LLVM eBPF backend to an eBPF elf file and loaded into the kernel via iproute2's tc, and be JITed in the kernel
 ```
+Particularly the tc classifier part of ebpf requires 4.1 kernel. This can be circumvented by attaching an ebpf program to a raw socket straight from the userspace bpf() syscall and marking the packages.
 
-## Useful resources
-Well explained examples for various network tools in linux:
-http://lartc.org/howto/index.html
+# Simple version of the setup
 
-Since kernel 3.18, which is usable in the device, eBPF-maps make memory usage between BPF runs possible. 
-"Thanks to eBPF-maps, programs written in eBPF can maintain state and thus aggregate information across events plus have dynamic behavior. Uses of eBPF continue to expanded due to its minimalistic implementation and lightening speed performance. Now onto what to expect for the future of eBPF."
+We used the enx8cae4cf5b7ae interface on the slave side. Ingress and Egress is handled separately but they both are essentially the same configurations. We used Hierarchical Token Bucket bucket for the limiting and classification of packets. Didn't seem to get u32 matching to work for tcp port so instead used iptables to set mark 2 for usbip traffic. Mark 1 and 3 are used for the slave traffic, 3 is the traffic that will be dropped. There is a priority lane for USBIP traffic for the port 7575.
 
-Better explanation with much more in the the article that can be found through this link: https://ferrisellis.com/posts/ebpf_past_present_future/
-
-## Simple data policing
-http://lartc.org/howto/lartc.qdisc.filters.html
-
-We used the enx8cae4cf5b7ae interface on the slave side. Ingress and Egress is handled separately but they both are essentially the same configurations. We used Hierarchical Token Bucket bucket for the limiting and classification of packets. Didn't seem to get u32 matching to work for tcp port so instead used iptables to set mark 2 for usbip traffic.
-
-Configuration
+Tc configuration
 ```
           1:0           root qdisc htb
          /   \
@@ -170,18 +168,18 @@ We updated the master to a fresh armbian install with kernel version 4.11.2, as 
 
 Kernel error occurs when connecting to the board via SSH. The kernel dumb is attached in kernel-error-dump.txt
 
-It appears this was not a fix since the kernel error happens again when there is a shh connection between master and slave boards.
+Further testing shows that the crash occurs when an SSH connection is made over the Usb-to-ethernet adapter, might be a driver issue.
 
-Just-in-time compiling (JITting) can't be done on 32 bit ARM processor as it has only ARM64 support.
+Just-in-time compiling (JITting) can't be done on 32 bit ARM processor as it has only ARM64 support. This is just a performance increase with bigger eBpf programs.
 
-### Update
+3.18 kernel has the ebpf support with maps so making a filter that for example drops every packet is possible. However we found a module in iptables that allows us to do the same thing. You can do an iptables action to every nth packet using the statistics module. There is a working version of the tc version of the filter that requires 4.1 kernel. More info in load_bpf.sh.
 
-The kernel error seems to be connected to the usb-to-eth adapter or its drivers. Everytime a ssh connection is made over it the adapter, the board connected to it will crash if it contains the newer kernel.
 
 ## Bcc
 
 We found an tool for using eBPF called BCC, but the github page says: "Much of what BCC uses requires Linux 4.1 and above."
 https://github.com/iovisor/bcc
+Bcc is essentially a python/C frontend for creating ebpf programs. 
 
 # Benchmarking the connection
 
@@ -196,7 +194,7 @@ netserver -4 -p 16604
 ```
 Then you can test the connection by using the netperf command
 ```
-netperf -H 192.168.50.6 -p 16604 -l 100
+netperf -H 192.168.1.147 -p 16604 -l 100
 ```
 
 Then you can use iftop or nload to monitor the data rates
@@ -221,3 +219,34 @@ After installation and running the executables, it should work straight away.
 TODO: Add server configuration to only use tcp 7575 for to get past policer on the bridge.
 
 Performance testing will be updated later, but at the moment the initial connection seems to take atleast 20 seconds everytime.
+
+# Useful resources
+Well explained examples for various network tools in linux:
+http://lartc.org/howto/index.html
+http://lartc.org/howto/lartc.qdisc.filters.html
+
+BPF samples
+https://github.com/torvalds/linux/tree/master/samples/bpf
+https://github.com/netoptimizer/prototype-kernel/tree/master/kernel/samples/bpf
+https://github.com/CumulusNetworks/iproute2/tree/master/examples/bpf
+https://github.com/idosch/iproute2/tree/master/examples/bpf
+https://elixir.bootlin.com/linux/v4.4.13/source/samples/bpf
+
+Bpf features by linux kernel version
+https://github.com/iovisor/bcc/blob/master/docs/kernel-versions.md
+
+marking with ebtables example:
+http://ebtables.netfilter.org/examples/example5.html
+
+A well written introduction to eBPF:
+https://ferrisellis.com/posts/ebpf_past_present_future/
+
+network emulation qdisc:
+https://wiki.linuxfoundation.org/networking/netem
+
+great image of linux network stack: iptables / ebtables
+https://upload.wikimedia.org/wikipedia/commons/3/37/Netfilter-packet-flow.svg
+
+# Next step
+- Do a netboot for the board so the image is centralized
+- Emulate a gadget with gpio(usb) -> usb port of device
