@@ -1,0 +1,82 @@
+master:
+________________
+*** Ebtables ***
+Bridge table: filter
+
+Bridge chain: INPUT, entries: 0, policy: ACCEPT
+
+Bridge chain: FORWARD, entries: 2, policy: ACCEPT
+-i enx8cae4cf5b7ae -j mark --mark-set 0x2 --mark-target CONTINUE, pcnt = 0 -- bcnt = 0
+-o enx8cae4cf5b7ae -j mark --mark-set 0x2 --mark-target CONTINUE, pcnt = 0 -- bcnt = 0
+
+Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
+
+*** Iptables ***
+Chain INPUT (policy ACCEPT 46 packets, 2680 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 MARK       tcp  --  any    any     anywhere             anywhere             tcp spt:7575 MARK set 0x1
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 MARK       all  --  any    any     anywhere             anywhere             statistic mode nth every 20 MARK set 0x3
+
+Chain OUTPUT (policy ACCEPT 51 packets, 10428 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 MARK       tcp  --  any    any     anywhere             anywhere             tcp dpt:7575 MARK set 0x1
+
+
+
+
+slave:
+________
+root@slave:~# netperf -H 192.168.1.147 -p 16604 -l 10
+MIGRATED TCP STREAM TEST from 0.0.0.0 () port 0 AF_INET to 192.168.1.147 () port 0 AF_INET : demo
+Recv   Send    Send                          
+Socket Socket  Message  Elapsed              
+Size   Size    Size     Time     Throughput  
+bytes  bytes   bytes    secs.    10^6bits/sec  
+
+ 87380  16384  16384    12.01       0.12   
+
+
+laptop:
+_____________
+Incoming:
+     Curr: 117.97 kBit
+     Avg: 5.55 kBit/s
+     Min: 0.00 Bit/s
+     Max: 13.31 MBit/s
+     Ttl: 814.37 MByte
+
+
+
+master:
+_____________
+*** Ebtables ***
+Bridge table: filter
+
+Bridge chain: INPUT, entries: 0, policy: ACCEPT
+
+Bridge chain: FORWARD, entries: 2, policy: ACCEPT
+-i enx8cae4cf5b7ae -j mark --mark-set 0x2 --mark-target CONTINUE, pcnt = 174 -- bcnt = 204068
+-o enx8cae4cf5b7ae -j mark --mark-set 0x2 --mark-target CONTINUE, pcnt = 160 -- bcnt = 13618
+
+Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
+
+*** Iptables ***
+Chain INPUT (policy ACCEPT 119 packets, 6516 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 MARK       tcp  --  any    any     anywhere             anywhere             tcp spt:7575 MARK set 0x1
+
+Chain FORWARD (policy ACCEPT 324 packets, 217K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+   17  9794 MARK       all  --  any    any     anywhere             anywhere             statistic mode nth every 20 MARK set 0x3
+
+Chain OUTPUT (policy ACCEPT 132 packets, 23724 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 MARK       tcp  --  any    any     anywhere             anywhere             tcp dpt:7575 MARK set 0x1
+
+
+174+160 = 334/17 = 20~
+
+
