@@ -353,6 +353,52 @@ Everything working as intended here
 
 ### Test on linux machine
 ### Test on windows machine over USBIP
+Virtualhere server running on debian stretch, client on a windows 10. Connection over local network.
+
+##### msd_remount_test
+```
+python msd_remount_test.py
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.047000 - 18:38:28
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 3.833000 - 18:38:32
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 7.683000 - 18:38:36
+Drive F: dismount
+Exiting
+```
+##### hid_usb_test
+```
+python hid_usb_test.py
+Thread 0 exception board 0240000033514e450044500585d4000be981000097969900
+Exiting
+Exception in thread Thread-3:
+Traceback (most recent call last):
+  File "C:\Python27\lib\threading.py", line 801, in __bootstrap_inner
+    self.run()
+  File "C:\Python27\lib\threading.py", line 754, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "hid_usb_test.py", line 43, in hid_main
+    device = pyOCD.pyDAPAccess.DAPAccess.get_device(board_id)
+  File "C:\Python27\lib\site-packages\pyOCD\pyDAPAccess\dap_access_cmsis_dap.py", line 367, in get_device
+    assert isinstance(device_id, str)
+AssertionError
+```
+##### cdc_stress_test
+```
+python cdc_stress_test.py
+No handlers could be found for logger "mbedls.platform_database"
+Thread 0 on loop          0 at 0.216000 - 18:34:13 - port COM3
+Thread 0 on loop         10 at 0.919000 - 18:34:14 - port COM3
+Thread 0 on loop         20 at 1.562000 - 18:34:14 - port COM3
+Thread 0 on loop         30 at 2.618000 - 18:34:15 - port COM3
+Thread 0 on loop         40 at 3.474000 - 18:34:16 - port COM3
+Thread 0 on loop         50 at 4.099000 - 18:34:17 - port COM3
+Thread 0 on loop         60 at 4.73
+```
+Some issues now, will have to look into this.
+
 ### Test on linux machine over USBIP
 
 # Roadblocks
