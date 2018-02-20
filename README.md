@@ -313,12 +313,7 @@ Performance testing will be updated later, but at the moment the initial connect
 * https://github.com/ARMmbed/DAPLink/tree/master/test/stress_tests
 Testing an FRDM-K64F board.
 The tests use python 2.7.
-Some prerequisite packages for the tests below.
-```
-pip install mbed-ls --upgrade
-pip install pyserial
-pip install --pre -U pyocd
-```
+
 ### Test on windows machine
 ##### msd_remount_test
 ```
@@ -352,7 +347,8 @@ Thread 0 on loop         50 at 0.332000 - 17:16:43 - port COM3
 Everything working as intended here
 
 ### Test on linux machine
-### Test on windows machine over  linux USBIP server
+
+### Test on windows machine over linux USBIP server
 Virtualhere server running on debian stretch, client on a windows 10. Connection over local network.
 
 ##### msd_remount_test
@@ -367,7 +363,7 @@ Virtualhere server running on debian stretch, client on a windows 10. Connection
 Some issues now, will have to look into this.
 
 ### Test on windows machine over windows USBIP server
-Virtualhere server running on windows 10, client on a windows 10. Connection over local network.
+Virtualhere server running on windows 10, virtualhere client on a windows 10. Connection over local network.
 
 ##### msd_remount_test
 ```
@@ -383,7 +379,12 @@ Exiting
 ```
 ##### hid_usb_test
 ```
-
+c:\Python2\python.exe hid_usb_test.py
+Thread 0 on loop          0 at 0.063000 - 20:14:05 - board 0240000033514e450044500585d4000be981000097969900
+Thread 0 on loop        100 at 2.170000 - 20:14:07 - board 0240000033514e450044500585d4000be981000097969900
+Thread 0 on loop        200 at 4.649000 - 20:14:09 - board 0240000033514e450044500585d4000be981000097969900
+Thread 0 on loop        300 at 6.565000 - 20:14:11 - board 0240000033514e450044500585d4000be981000097969900
+Exiting
 ```
 ##### cdc_stress_test
 ```
@@ -396,8 +397,7 @@ Thread 0 on loop         40 at 5.439000 - 19:35:13 - port COM3
 Exiting
 
 ```
-
-### Test on linux machine over USBIP
+Everything working here. The loading times are longer compared to a regular usb connection.
 
 # Roadblocks
 We updated the master to a fresh armbian install with kernel version 4.11.2, as eBPF supports connections to traffic control classifiers. It resulted in a kernel error. Kernel error occurs on both mainline armbian and neo ubuntu xenial. We will have to see if kernel version 3.x is enough for the project.
