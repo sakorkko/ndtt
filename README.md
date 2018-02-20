@@ -310,7 +310,47 @@ TODO: Add server configuration to only use tcp 7575 for to get past policer on t
 Performance testing will be updated later, but at the moment the initial connection seems to take atleast 20 seconds everytime.
 
 # DAPLink
+* https://github.com/ARMmbed/DAPLink/tree/master/test/stress_tests
+Testing an FRDM-K64F board.
+The tests use python 2.7.
+Some prerequisite packages for the tests below.
+```
+pip install mbed-ls --upgrade
+pip install pyserial
+pip install --pre -U pyocd
+```
 ### Test on windows machine
+##### msd_remount_test
+```
+C:\Python2\python.exe msd_remount_test.py
+Triggering remount for 0 D: - 0240000033514e450044500585d4000be981000097969900 at 0.049000 - 17:21:32
+Drive D: dismount
+Remount complete as D:
+Triggering remount for 0 D: - 0240000033514e450044500585d4000be981000097969900 at 3.673000 - 17:21:36
+Drive D: dismount
+Remount complete as D:
+```
+##### hid_usb_test
+```
+C:\Users\Samuli\Documents\GitHub\DAPLink\test\stress_tests>C:\Python2\python.exe hid_usb_test.py
+Thread 0 on loop          0 at 0.037000 - 17:19:05 - board 0240000033514e450044500585d4000be981000097969900
+Thread 0 on loop        100 at 0.959000 - 17:19:06 - board 0240000033514e450044500585d4000be981000097969900
+Thread 0 on loop        200 at 1.787000 - 17:19:06 - board 0240000033514e450044500585d4000be981000097969900
+Thread 0 on loop        300 at 2.619000 - 17:19:07 - board 0240000033514e450044500585d4000be981000097969900
+```
+##### cdc_stress_test
+
+```
+C:\Python2\python.exe cdc_stress_test.py
+Thread 0 on loop          0 at 0.039000 - 17:16:42 - port COM3
+Thread 0 on loop         10 at 0.097000 - 17:16:42 - port COM3
+Thread 0 on loop         20 at 0.156000 - 17:16:42 - port COM3
+Thread 0 on loop         30 at 0.214000 - 17:16:42 - port COM3
+Thread 0 on loop         40 at 0.273000 - 17:16:43 - port COM3
+Thread 0 on loop         50 at 0.332000 - 17:16:43 - port COM3
+```
+Everything working as intended here
+
 ### Test on linux machine
 ### Test on windows machine over USBIP
 ### Test on linux machine over USBIP
