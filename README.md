@@ -24,13 +24,13 @@
 * [USBIP](#usbip)
     * [VirtualHere USBIP drivers](#virtualhere-usbip-drivers)
 * [DAPLink](#daplink)
-* [Test on windows machine](#test-on-windows-machine)
-* [Test on linux machine](#test-on-linux-machine)
-* [Test on windows machine over USBIP](#test-on-windows-machine-over-usbip)
-* [Test on linux machine over USBIP](#test-on-linux-machine-over-usbip)
-    * [Roadblocks](#roadblocks)
-    * [Useful Resources](#useful-resources)
-    * [Next Step](#next-step)
+    * [Test on windows machine](#test-on-windows-machine)
+    * [Test on linux machine](#test-on-linux-machine)
+    * [Test on windows machine over USBIP](#test-on-windows-machine-over-usbip)
+    * [Test on linux machine over USBIP](#test-on-linux-machine-over-usbip)
+* [Roadblocks](#roadblocks)
+* [Useful Resources](#useful-resources)
+* [Next Step](#next-step)
     
 # Nanopi Neo v1.2
 A board that runs linux similar to the Raspberry pi but more affordable and barebone.
