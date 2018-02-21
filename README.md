@@ -309,6 +309,8 @@ TODO: Add server configuration to only use tcp 7575 for to get past policer on t
 
 Performance testing will be updated later, but at the moment the initial connection seems to take atleast 20 seconds everytime.
 
+No such issues running the server on a linux laptop.
+
 # DAPLink
 * https://github.com/ARMmbed/DAPLink/tree/master/test/stress_tests
 Testing an FRDM-K64F board.
@@ -317,50 +319,105 @@ The tests use python 2.7.
 ### Test on windows machine
 ##### msd_remount_test
 ```
-C:\Python2\python.exe msd_remount_test.py
-Triggering remount for 0 D: - 0240000033514e450044500585d4000be981000097969900 at 0.049000 - 17:21:32
-Drive D: dismount
-Remount complete as D:
-Triggering remount for 0 D: - 0240000033514e450044500585d4000be981000097969900 at 3.673000 - 17:21:36
-Drive D: dismount
-Remount complete as D:
+c:\Python27\python.exe msd_remount_test.py
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.039000 - 14:04:24
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 3.625000 - 14:04:28
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 7.187000 - 14:04:31
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 11.089000 - 14:04:35
+Drive F: dismount
 ```
 ##### hid_usb_test
 ```
-C:\Users\Samuli\Documents\GitHub\DAPLink\test\stress_tests>C:\Python2\python.exe hid_usb_test.py
-Thread 0 on loop          0 at 0.037000 - 17:19:05 - board 0240000033514e450044500585d4000be981000097969900
-Thread 0 on loop        100 at 0.959000 - 17:19:06 - board 0240000033514e450044500585d4000be981000097969900
-Thread 0 on loop        200 at 1.787000 - 17:19:06 - board 0240000033514e450044500585d4000be981000097969900
-Thread 0 on loop        300 at 2.619000 - 17:19:07 - board 0240000033514e450044500585d4000be981000097969900
+c:\Python27\python.exe hid_usb_test.py
+Thread 0 exception board 0240000033514e450044500585d4000be981000097969900
+Exiting
+Exception in thread Thread-3:
+Traceback (most recent call last):
+  File "c:\Python27\lib\threading.py", line 801, in __bootstrap_inner
+    self.run()
+  File "c:\Python27\lib\threading.py", line 754, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "hid_usb_test.py", line 43, in hid_main
+    device = pyOCD.pyDAPAccess.DAPAccess.get_device(board_id)
+  File "c:\Python27\lib\site-packages\pyOCD\pyDAPAccess\dap_access_cmsis_dap.py", line 367, in get_device
+    assert isinstance(device_id, str)
+AssertionError
 ```
 ##### cdc_stress_test
-
 ```
-C:\Python2\python.exe cdc_stress_test.py
-Thread 0 on loop          0 at 0.039000 - 17:16:42 - port COM3
-Thread 0 on loop         10 at 0.097000 - 17:16:42 - port COM3
-Thread 0 on loop         20 at 0.156000 - 17:16:42 - port COM3
-Thread 0 on loop         30 at 0.214000 - 17:16:42 - port COM3
-Thread 0 on loop         40 at 0.273000 - 17:16:43 - port COM3
-Thread 0 on loop         50 at 0.332000 - 17:16:43 - port COM3
+c:\Python27\python.exe cdc_stress_test.py
+Thread 0 on loop          0 at 0.040000 - 14:04:59 - port COM3
+Thread 0 on loop         10 at 0.141000 - 14:04:59 - port COM3
+Thread 0 on loop         20 at 0.241000 - 14:04:59 - port COM3
+Thread 0 on loop         30 at 0.343000 - 14:04:59 - port COM3
+Thread 0 on loop         40 at 0.443000 - 14:04:59 - port COM3
+Thread 0 on loop         50 at 0.545000 - 14:04:59 - port COM3
+Thread 0 on loop         60 at 0.646000 - 14:04:59 - port COM3
+Thread 0 on loop         70 at 0.747000 - 14:04:59 - port COM3
+Thread 0 on loop         80 at 0.847000 - 14:05:00 - port COM3
 ```
-Everything working as intended here
+Some problems with the hid test, sometimes worked when replugged the cable and other times not.
 
 ### Test on linux machine
-
+Issues running the test at all on linux. Does not crash, but does not print anything or use the device.
+```
+No handlers could be found ofor logger "mbedls.platform_database"
+No handlers could be found ofor logger "mbedls.lstool_base"
+```
 ### Test on windows machine over linux USBIP server
 Virtualhere server running on debian stretch, client on a windows 10. Connection over local network.
 
 ##### msd_remount_test
 ```
+c:\Python27\python.exe msd_remount_test.py
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.155000 - 13:56:00
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 3.891000 - 13:56:04
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 8.208000 - 13:56:08
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 17.390000 - 13:56:17
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 20.937000 - 13:56:21
+Exiting
 ```
 ##### hid_usb_test
 ```
+c:\Python27\python.exe hid_usb_test.py
+Thread 0 exception board 0240000033514e450044500585d4000be981000097969900
+Exception in thread Thread-3:
+Traceback (most recent call last):
+  File "c:\Python27\lib\threading.py", line 801, in __bootstrap_inner
+    self.run()
+  File "c:\Python27\lib\threading.py", line 754, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "hid_usb_test.py", line 43, in hid_main
+    device = pyOCD.pyDAPAccess.DAPAccess.get_device(board_id)
+  File "c:\Python27\lib\site-packages\pyOCD\pyDAPAccess\dap_access_cmsis_dap.py", line 367, in get_device
+    assert isinstance(device_id, str)
+AssertionError
 ```
 ##### cdc_stress_test
 ```
+c:\Python27\python.exe cdc_stress_test.py
+Thread 0 on loop          0 at 0.182000 - 14:05:54 - port COM3
+Thread 0 on loop         10 at 0.783000 - 14:05:55 - port COM3
+Thread 0 on loop         20 at 1.373000 - 14:05:55 - port COM3
+Thread 0 on loop         30 at 1.964000 - 14:05:56 - port COM3
+Thread 0 on loop         40 at 2.632000 - 14:05:57 - port COM3
+Thread 0 on loop         50 at 3.421000 - 14:05:57 - port COM3
+Thread 0 on loop         60 at 4.034000 - 14:05:58 - port COM3
 ```
-Some issues now, will have to look into this.
 
 ### Test on windows machine over windows USBIP server
 Virtualhere server running on windows 10, virtualhere client on a windows 10. Connection over local network.
@@ -379,12 +436,20 @@ Exiting
 ```
 ##### hid_usb_test
 ```
-c:\Python2\python.exe hid_usb_test.py
-Thread 0 on loop          0 at 0.063000 - 20:14:05 - board 0240000033514e450044500585d4000be981000097969900
-Thread 0 on loop        100 at 2.170000 - 20:14:07 - board 0240000033514e450044500585d4000be981000097969900
-Thread 0 on loop        200 at 4.649000 - 20:14:09 - board 0240000033514e450044500585d4000be981000097969900
-Thread 0 on loop        300 at 6.565000 - 20:14:11 - board 0240000033514e450044500585d4000be981000097969900
+python.exe hid_usb_test.py
+Thread 0 exception board 0240000033514e450044500585d4000be981000097969900
 Exiting
+Exception in thread Thread-3:
+Traceback (most recent call last):
+  File "c:\Python27\lib\threading.py", line 801, in __bootstrap_inner
+    self.run()
+  File "c:\Python27\lib\threading.py", line 754, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "hid_usb_test.py", line 43, in hid_main
+    device = pyOCD.pyDAPAccess.DAPAccess.get_device(board_id)
+  File "c:\Python27\lib\site-packages\pyOCD\pyDAPAccess\dap_access_cmsis_dap.py", line 367, in get_device
+    assert isinstance(device_id, str)
+AssertionError
 ```
 ##### cdc_stress_test
 ```
@@ -397,7 +462,7 @@ Thread 0 on loop         40 at 5.439000 - 19:35:13 - port COM3
 Exiting
 
 ```
-Everything working here. The loading times are longer compared to a regular usb connection.
+Same functionality over USBIP, a bit longer loading times as expected.
 
 # Roadblocks
 We updated the master to a fresh armbian install with kernel version 4.11.2, as eBPF supports connections to traffic control classifiers. It resulted in a kernel error. Kernel error occurs on both mainline armbian and neo ubuntu xenial. We will have to see if kernel version 3.x is enough for the project.
