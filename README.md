@@ -26,12 +26,18 @@
 * [DAPLink](#daplink)
     * [Test on windows machine](#test-on-windows-machine)
     * [Test on linux machine](#test-on-linux-machine)
-    * [Test on windows machine over USBIP](#test-on-windows-machine-over-usbip)
-    * [Test on linux machine over USBIP](#test-on-linux-machine-over-usbip)
+    * [Test on windows machine over linux USBIP server](#test-on-windows-machine-over-linux-usbip-server)
+    * [Test on windows machine over windows USBIP server](#test-on-windows-machine-over-windows-usbip-server)
+    * [Test on windows machine over NanoPi Neo USBIP server](#test-on-windows-machine-over-nanopi-neo-usbip-server)
 * [Roadblocks](#roadblocks)
 * [Useful Resources](#useful-resources)
 * [Next Step](#next-step)
+
+Test on windows machine over linux USBIP server
+Test on windows machine over windows USBIP server
+Test on windows machine over NanoPi Neo USBIP server    
     
+
 # Nanopi Neo v1.2
 A board that runs linux similar to the Raspberry pi but more affordable and barebone.
 
@@ -365,10 +371,10 @@ Thread 0 on loop         80 at 0.847000 - 14:05:00 - port COM3
 Some problems with the hid test, sometimes worked when replugged the cable and other times not.
 
 ### Test on linux machine
-Issues running the test at all on linux. Does not crash, but does not print anything or use the device.
+Issues running the test at all on linux. Does not crash, but does not print anything.
 ```
-No handlers could be found ofor logger "mbedls.platform_database"
-No handlers could be found ofor logger "mbedls.lstool_base"
+No handlers could be found for logger "mbedls.platform_database"
+No handlers could be found for logger "mbedls.lstool_base"
 ```
 ### Test on windows machine over linux USBIP server
 Virtualhere server running on debian stretch, client on a windows 10. Connection over local network.
@@ -463,6 +469,54 @@ Exiting
 
 ```
 Same functionality over USBIP, a bit longer loading times as expected.
+
+### Test on windows machine over NanoPi Neo USBIP server
+Virtualhere server running on the masters usb port, virtualhere client on a windows 10. Connection over local network.
+
+##### msd_remount_test
+```
+c:\Python27\python.exe msd_remount_test.py
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.044000 - 07:43:48
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 23.753000 - 07:44:12
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 47.920000 - 07:44:36
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 70.933000 - 07:44:59
+Exiting
+```
+##### hid_usb_test
+```
+python.exe hid_usb_test.py
+Thread 0 exception board 0240000033514e450044500585d4000be981000097969900
+Exiting
+Exception in thread Thread-3:
+Traceback (most recent call last):
+  File "c:\Python27\lib\threading.py", line 801, in __bootstrap_inner
+    self.run()
+  File "c:\Python27\lib\threading.py", line 754, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "hid_usb_test.py", line 43, in hid_main
+    device = pyOCD.pyDAPAccess.DAPAccess.get_device(board_id)
+  File "c:\Python27\lib\site-packages\pyOCD\pyDAPAccess\dap_access_cmsis_dap.py", line 367, in get_device
+    assert isinstance(device_id, str)
+AssertionError
+```
+##### cdc_stress_test
+```
+c:\Python27\python.exe cdc_stress_test.py
+Thread 0 on loop          0 at 0.170000 - 07:43:35 - port COM3
+Thread 0 on loop         10 at 0.765000 - 07:43:35 - port COM3
+Thread 0 on loop         20 at 1.354000 - 07:43:36 - port COM3
+Thread 0 on loop         30 at 1.943000 - 07:43:36 - port COM3
+Thread 0 on loop         40 at 2.536000 - 07:43:37 - port COM3
+Exiting
+
+```
+Same functionality over USBIP, a considerably longer loading times on remount test.
 
 # Roadblocks
 We updated the master to a fresh armbian install with kernel version 4.11.2, as eBPF supports connections to traffic control classifiers. It resulted in a kernel error. Kernel error occurs on both mainline armbian and neo ubuntu xenial. We will have to see if kernel version 3.x is enough for the project.
