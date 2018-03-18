@@ -326,17 +326,23 @@ The tests use python 2.7.
 ##### msd_remount_test
 ```
 c:\Python27\python.exe msd_remount_test.py
-Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.039000 - 14:04:24
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.048000 - 15:38:26
 Drive F: dismount
 Remount complete as F:
-Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 3.625000 - 14:04:28
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 3.669000 - 15:38:30
 Drive F: dismount
 Remount complete as F:
-Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 7.187000 - 14:04:31
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 7.194000 - 15:38:33
 Drive F: dismount
 Remount complete as F:
-Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 11.089000 - 14:04:35
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 10.792000 - 15:38:37
 Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 14.757000 - 15:38:41
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 18.767000 - 15:38:45
+Exiting
 ```
 ##### hid_usb_test
 ```
@@ -358,15 +364,19 @@ AssertionError
 ##### cdc_stress_test
 ```
 c:\Python27\python.exe cdc_stress_test.py
-Thread 0 on loop          0 at 0.040000 - 14:04:59 - port COM3
-Thread 0 on loop         10 at 0.141000 - 14:04:59 - port COM3
-Thread 0 on loop         20 at 0.241000 - 14:04:59 - port COM3
-Thread 0 on loop         30 at 0.343000 - 14:04:59 - port COM3
-Thread 0 on loop         40 at 0.443000 - 14:04:59 - port COM3
-Thread 0 on loop         50 at 0.545000 - 14:04:59 - port COM3
-Thread 0 on loop         60 at 0.646000 - 14:04:59 - port COM3
-Thread 0 on loop         70 at 0.747000 - 14:04:59 - port COM3
-Thread 0 on loop         80 at 0.847000 - 14:05:00 - port COM3
+Thread 0 on loop          0 at 0.142000 - 15:37:19 - port COM3
+Thread 0 on loop         10 at 0.251000 - 15:37:19 - port COM3
+Thread 0 on loop         20 at 0.352000 - 15:37:19 - port COM3
+Thread 0 on loop         30 at 0.455000 - 15:37:19 - port COM3
+Thread 0 on loop         40 at 0.558000 - 15:37:19 - port COM3
+Thread 0 on loop         50 at 0.660000 - 15:37:19 - port COM3
+Thread 0 on loop         60 at 0.764000 - 15:37:19 - port COM3
+Thread 0 on loop         70 at 0.865000 - 15:37:19 - port COM3
+Thread 0 on loop         80 at 0.966000 - 15:37:19 - port COM3
+Thread 0 on loop         90 at 1.069000 - 15:37:20 - port COM3
+Thread 0 on loop        100 at 1.172000 - 15:37:20 - port COM3
+Thread 0 on loop        110 at 1.275000 - 15:37:20 - port COM3
+Thread 0 on loop        120 at 1.378000 - 15:37:20 - port COM3
 ```
 Some problems with the hid test, sometimes worked when replugged the cable and other times not.
 
@@ -382,47 +392,41 @@ Virtualhere server running on debian stretch, client on a windows 10. Connection
 ##### msd_remount_test
 ```
 c:\Python27\python.exe msd_remount_test.py
-Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.155000 - 13:56:00
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.049000 - 15:44:29
 Drive F: dismount
 Remount complete as F:
-Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 3.891000 - 13:56:04
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 3.687000 - 15:44:33
 Drive F: dismount
 Remount complete as F:
-Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 8.208000 - 13:56:08
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 7.531000 - 15:44:37
 Drive F: dismount
 Remount complete as F:
-Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 17.390000 - 13:56:17
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 11.492000 - 15:44:41
 Drive F: dismount
 Remount complete as F:
-Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 20.937000 - 13:56:21
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 15.531000 - 15:44:45
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 19.496000 - 15:44:49
 Exiting
-```
-##### hid_usb_test
-```
-c:\Python27\python.exe hid_usb_test.py
-Thread 0 exception board 0240000033514e450044500585d4000be981000097969900
-Exception in thread Thread-3:
-Traceback (most recent call last):
-  File "c:\Python27\lib\threading.py", line 801, in __bootstrap_inner
-    self.run()
-  File "c:\Python27\lib\threading.py", line 754, in run
-    self.__target(*self.__args, **self.__kwargs)
-  File "hid_usb_test.py", line 43, in hid_main
-    device = pyOCD.pyDAPAccess.DAPAccess.get_device(board_id)
-  File "c:\Python27\lib\site-packages\pyOCD\pyDAPAccess\dap_access_cmsis_dap.py", line 367, in get_device
-    assert isinstance(device_id, str)
-AssertionError
+
 ```
 ##### cdc_stress_test
 ```
 c:\Python27\python.exe cdc_stress_test.py
-Thread 0 on loop          0 at 0.182000 - 14:05:54 - port COM3
-Thread 0 on loop         10 at 0.783000 - 14:05:55 - port COM3
-Thread 0 on loop         20 at 1.373000 - 14:05:55 - port COM3
-Thread 0 on loop         30 at 1.964000 - 14:05:56 - port COM3
-Thread 0 on loop         40 at 2.632000 - 14:05:57 - port COM3
-Thread 0 on loop         50 at 3.421000 - 14:05:57 - port COM3
-Thread 0 on loop         60 at 4.034000 - 14:05:58 - port COM3
+Thread 0 on loop          0 at 0.090000 - 15:44:03 - port COM3
+Thread 0 on loop         10 at 0.323000 - 15:44:03 - port COM3
+Thread 0 on loop         20 at 0.541000 - 15:44:03 - port COM3
+Thread 0 on loop         30 at 0.741000 - 15:44:03 - port COM3
+Thread 0 on loop         40 at 0.948000 - 15:44:04 - port COM3
+Thread 0 on loop         50 at 1.195000 - 15:44:04 - port COM3
+Thread 0 on loop         60 at 1.468000 - 15:44:04 - port COM3
+Thread 0 on loop         70 at 1.691000 - 15:44:04 - port COM3
+Thread 0 on loop         80 at 1.915000 - 15:44:05 - port COM3
+Thread 0 on loop         90 at 2.134000 - 15:44:05 - port COM3
+Thread 0 on loop        100 at 2.360000 - 15:44:05 - port COM3
+Thread 0 on loop        110 at 2.577000 - 15:44:05 - port COM3
+Thread 0 on loop        120 at 2.800000 - 15:44:05 - port COM3
 ```
 
 ### Test on windows machine over windows USBIP server
@@ -430,43 +434,41 @@ Virtualhere server running on windows 10, virtualhere client on a windows 10. Co
 
 ##### msd_remount_test
 ```
-python msd_remount_test.py
-Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.137000 - 19:34:40
+c:\Python27\python.exe msd_remount_test.py
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.119000 - 15:48:25
 Drive F: dismount
 Remount complete as F:
-Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 4.218000 - 19:34:44
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 3.824000 - 15:48:29
 Drive F: dismount
 Remount complete as F:
-Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 7.932000 - 19:34:48
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 7.357000 - 15:48:33
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 10.975000 - 15:48:36
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 14.671000 - 15:48:40
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 18.486000 - 15:48:44
 Exiting
-```
-##### hid_usb_test
-```
-python.exe hid_usb_test.py
-Thread 0 exception board 0240000033514e450044500585d4000be981000097969900
-Exiting
-Exception in thread Thread-3:
-Traceback (most recent call last):
-  File "c:\Python27\lib\threading.py", line 801, in __bootstrap_inner
-    self.run()
-  File "c:\Python27\lib\threading.py", line 754, in run
-    self.__target(*self.__args, **self.__kwargs)
-  File "hid_usb_test.py", line 43, in hid_main
-    device = pyOCD.pyDAPAccess.DAPAccess.get_device(board_id)
-  File "c:\Python27\lib\site-packages\pyOCD\pyDAPAccess\dap_access_cmsis_dap.py", line 367, in get_device
-    assert isinstance(device_id, str)
-AssertionError
 ```
 ##### cdc_stress_test
 ```
-python cdc_stress_test.py
-Thread 0 on loop          0 at 0.117000 - 19:35:08 - port COM3
-Thread 0 on loop         10 at 0.951000 - 19:35:09 - port COM3
-Thread 0 on loop         20 at 2.148000 - 19:35:10 - port COM3
-Thread 0 on loop         30 at 4.073000 - 19:35:12 - port COM3
-Thread 0 on loop         40 at 5.439000 - 19:35:13 - port COM3
-Exiting
-
+c:\Python27\python.exe cdc_stress_test.py
+Thread 0 on loop          0 at 0.134000 - 15:47:27 - port COM3
+Thread 0 on loop         10 at 0.532000 - 15:47:27 - port COM3
+Thread 0 on loop         20 at 0.897000 - 15:47:27 - port COM3
+Thread 0 on loop         30 at 1.250000 - 15:47:28 - port COM3
+Thread 0 on loop         40 at 1.621000 - 15:47:28 - port COM3
+Thread 0 on loop         50 at 1.940000 - 15:47:28 - port COM3
+Thread 0 on loop         60 at 2.284000 - 15:47:29 - port COM3
+Thread 0 on loop         70 at 2.677000 - 15:47:29 - port COM3
+Thread 0 on loop         80 at 3.084000 - 15:47:30 - port COM3
+Thread 0 on loop         90 at 3.507000 - 15:47:30 - port COM3
+Thread 0 on loop        100 at 3.913000 - 15:47:30 - port COM3
+Thread 0 on loop        110 at 4.343000 - 15:47:31 - port COM3
+Thread 0 on loop        120 at 4.751000 - 15:47:31 - port COM3
 ```
 Same functionality over USBIP, a bit longer loading times as expected.
 
@@ -487,23 +489,6 @@ Drive F: dismount
 Remount complete as F:
 Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 70.933000 - 07:44:59
 Exiting
-```
-##### hid_usb_test
-```
-python.exe hid_usb_test.py
-Thread 0 exception board 0240000033514e450044500585d4000be981000097969900
-Exiting
-Exception in thread Thread-3:
-Traceback (most recent call last):
-  File "c:\Python27\lib\threading.py", line 801, in __bootstrap_inner
-    self.run()
-  File "c:\Python27\lib\threading.py", line 754, in run
-    self.__target(*self.__args, **self.__kwargs)
-  File "hid_usb_test.py", line 43, in hid_main
-    device = pyOCD.pyDAPAccess.DAPAccess.get_device(board_id)
-  File "c:\Python27\lib\site-packages\pyOCD\pyDAPAccess\dap_access_cmsis_dap.py", line 367, in get_device
-    assert isinstance(device_id, str)
-AssertionError
 ```
 ##### cdc_stress_test
 ```
@@ -529,7 +514,12 @@ Just-in-time compiling (JITting) can't be done on 32 bit ARM processor as it has
 
 3.18 kernel has the ebpf support with maps so making a filter that for example drops every packet is possible. However we found a module in iptables that allows us to do the same thing. You can do an iptables action to every nth packet using the statistics module. There is a working version of the tc version of the filter that requires 4.1 kernel. More info in load_bpf.sh.
 
-
+Issues running the test at all on linux. Does not crash, but does not print anything.
+```
+No handlers could be found for logger "mbedls.platform_database"
+No handlers could be found for logger "mbedls.lstool_base"
+```
+Solution was to mount the daplink drive manually.
 # Useful resources
 Well explained examples for various network tools in linux:
 * http://lartc.org/howto/index.html
