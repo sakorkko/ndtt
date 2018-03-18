@@ -491,6 +491,51 @@ Thread 0 on loop        100 at 6.944000 - 16:02:46 - port COM3
 Thread 0 on loop        110 at 7.793000 - 16:02:47 - port COM3
 Thread 0 on loop        120 at 8.592000 - 16:02:47 - port COM3
 ```
+### Test on linux machine over linux  server
+Server running on nanopineo armbian, client on debian stretch. Connection over local network.
+
+##### msd_remount_test
+```
+Triggering remount for 0 /media/samuli/DAPLINK - 0240000033514e450044500585d4000be981000097969900 at 0.010320 - 19:46:55
+Drive /media/samuli/DAPLINK dismount
+No handlers could be found for logger "mbedls.lstools_base"
+Remount complete as /media/samuli/DAPLINK
+Triggering remount for 0 /media/samuli/DAPLINK - 0240000033514e450044500585d4000be981000097969900 at 8.045644 - 19:47:03
+Drive /media/samuli/DAPLINK dismount
+Remount complete as /media/samuli/DAPLINK
+Triggering remount for 0 /media/samuli/DAPLINK - 0240000033514e450044500585d4000be981000097969900 at 15.110410 - 19:47:10
+Drive /media/samuli/DAPLINK dismount
+Remount complete as /media/samuli/DAPLINK
+Triggering remount for 0 /media/samuli/DAPLINK - 0240000033514e450044500585d4000be981000097969900 at 21.834280 - 19:47:16
+Drive /media/samuli/DAPLINK dismount
+Remount complete as /media/samuli/DAPLINK
+Triggering remount for 0 /media/samuli/DAPLINK - 0240000033514e450044500585d4000be981000097969900 at 28.805145 - 19:47:23
+Drive /media/samuli/DAPLINK dismount
+Remount complete as /media/samuli/DAPLINK
+Triggering remount for 0 /media/samuli/DAPLINK - 0240000033514e450044500585d4000be981000097969900 at 35.648887 - 19:47:30
+Drive /media/samuli/DAPLINK dismount
+Remount complete as /media/samuli/DAPLINK
+Triggering remount for 0 /media/samuli/DAPLINK - 0240000033514e450044500585d4000be981000097969900 at 42.493699 - 19:47:37
+Drive /media/samuli/DAPLINK dismount
+```
+Connection seems to be much more stable compared to windows side. No jumps in delay.
+
+##### cdc_stress_test
+```
+Thread 0 on loop          0 at 0.033271 - 19:45:57 - port /dev/ttyACM0
+Thread 0 on loop         10 at 0.328773 - 19:45:57 - port /dev/ttyACM0
+Thread 0 on loop         20 at 0.597770 - 19:45:57 - port /dev/ttyACM0
+Thread 0 on loop         30 at 0.859739 - 19:45:57 - port /dev/ttyACM0
+Thread 0 on loop         40 at 1.124546 - 19:45:58 - port /dev/ttyACM0
+Thread 0 on loop         50 at 1.387713 - 19:45:58 - port /dev/ttyACM0
+Thread 0 on loop         60 at 1.649646 - 19:45:58 - port /dev/ttyACM0
+Thread 0 on loop         70 at 1.917756 - 19:45:58 - port /dev/ttyACM0
+Thread 0 on loop         80 at 2.179626 - 19:45:59 - port /dev/ttyACM0
+Thread 0 on loop         90 at 2.446772 - 19:45:59 - port /dev/ttyACM0
+Thread 0 on loop        100 at 2.710774 - 19:45:59 - port /dev/ttyACM0
+Thread 0 on loop        110 at 3.010037 - 19:45:59 - port /dev/ttyACM0
+Thread 0 on loop        120 at 3.331701 - 19:46:00 - port /dev/ttyACM0
+```
 
 ## Linux builtin USBIP drivers
 
@@ -498,23 +543,46 @@ Thread 0 on loop        120 at 8.592000 - 16:02:47 - port COM3
 
 ##### msd_remount_test
 ```
-
+Triggering remount for 0 /media/samuli/DAPLINK - 0240000033514e450044500585d4000be981000097969900 at 0.011876 - 19:34:28
+Drive /media/samuli/DAPLINK dismount
+No handlers could be found for logger "mbedls.lstools_base"
+Remount complete as /media/samuli/DAPLINK
+Triggering remount for 0 /media/samuli/DAPLINK - 0240000033514e450044500585d4000be981000097969900 at 7.245219 - 19:34:36
+Drive /media/samuli/DAPLINK dismount
+Remount complete as /media/samuli/DAPLINK
+Triggering remount for 0 /media/samuli/DAPLINK - 0240000033514e450044500585d4000be981000097969900 at 13.720506 - 19:34:42
+Drive /media/samuli/DAPLINK dismount
+Remount complete as /media/samuli/DAPLINK
+Triggering remount for 0 /media/samuli/DAPLINK - 0240000033514e450044500585d4000be981000097969900 at 20.231599 - 19:34:49
+Drive /media/samuli/DAPLINK dismount
+Remount complete as /media/samuli/DAPLINK
+Triggering remount for 0 /media/samuli/DAPLINK - 0240000033514e450044500585d4000be981000097969900 at 26.663832 - 19:34:55
+Drive /media/samuli/DAPLINK dismount
+Remount complete as /media/samuli/DAPLINK
+Triggering remount for 0 /media/samuli/DAPLINK - 0240000033514e450044500585d4000be981000097969900 at 33.093323 - 19:35:01
+Drive /media/samuli/DAPLINK dismount
+^CExiting
 ```
+Have to remount the device everytime the tests dismounts it. This creates a bit of lag since I didn't get the automount to work properly.
 ##### cdc_stress_test
 ```
-
+Thread 0 on loop          0 at 0.010331 - 19:16:26 - port /dev/ttyACM0
+Thread 0 on loop         10 at 0.029908 - 19:16:26 - port /dev/ttyACM0
+Thread 0 on loop         20 at 0.049909 - 19:16:26 - port /dev/ttyACM0
+Thread 0 on loop         30 at 0.069871 - 19:16:26 - port /dev/ttyACM0
+Thread 0 on loop         40 at 0.089967 - 19:16:26 - port /dev/ttyACM0
+Thread 0 on loop         50 at 0.109921 - 19:16:26 - port /dev/ttyACM0
+Thread 0 on loop         60 at 0.129886 - 19:16:26 - port /dev/ttyACM0
+Thread 0 on loop         70 at 0.150006 - 19:16:26 - port /dev/ttyACM0
+Thread 0 on loop         80 at 0.169914 - 19:16:26 - port /dev/ttyACM0
+Thread 0 on loop         90 at 0.190008 - 19:16:26 - port /dev/ttyACM0
+Thread 0 on loop        100 at 0.209860 - 19:16:26 - port /dev/ttyACM0
+Thread 0 on loop        110 at 0.229958 - 19:16:26 - port /dev/ttyACM0
+Thread 0 on loop        120 at 0.249887 - 19:16:26 - port /dev/ttyACM0
 ```
 ### Test on linux machine over linux  server
 Server running on nanopineo armbian, client on debian stretch. Connection over local network.
-
-##### msd_remount_test
-```
-
-```
-##### cdc_stress_test
-```
-
-```
+Some issues with loading the daemon, the version is older than on newer kernels. Most likely due to that. There are some required modules completely missing.
 
 # Roadblocks
 We updated the master to a fresh armbian install with kernel version 4.11.2, as eBPF supports connections to traffic control classifiers. It resulted in a kernel error. Kernel error occurs on both mainline armbian and neo ubuntu xenial. We will have to see if kernel version 3.x is enough for the project.
