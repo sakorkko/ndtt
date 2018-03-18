@@ -1,0 +1,203 @@
+C:\Users\Samuli\Documents\Git\DAPLink\test\stress_tests>c:\Python27\python.exe msd_remount_test.py
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.039000 - 16:03:10
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 23.544000 - 16:03:33
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 27.226000 - 16:03:37
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 31.556000 - 16:03:41
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 55.576000 - 16:04:05
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 79.678000 - 16:04:29
+Drive F: dismount
+Exiting
+Exception KeyboardInterrupt in <module 'threading' from 'c:\Python27\lib\threading.pyc'> ignored
+
+C:\Users\Samuli\Documents\Git\DAPLink\test\stress_tests>c:\Python27\python.exe msd_remount_test.py
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.062000 - 16:04:56
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 3.871000 - 16:05:00
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 7.580000 - 16:05:04
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 12.148000 - 16:05:08
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 15.821000 - 16:05:12
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 19.583000 - 16:05:16
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 23.836000 - 16:05:20
+Exiting
+Drive F: dismount
+
+C:\Users\Samuli\Documents\Git\DAPLink\test\stress_tests>c:\Python27\python.exe msd_remount_test.py
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.386000 - 16:05:24
+Exiting
+
+C:\Users\Samuli\Documents\Git\DAPLink\test\stress_tests>c:\Python27\python.exe msd_remount_test.py
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.059000 - 16:07:15
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 3.628000 - 16:07:19
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 7.533000 - 16:07:23
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 11.625000 - 16:07:27
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 36.497000 - 16:07:52
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 40.959000 - 16:07:56
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 64.898000 - 16:08:20
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 88.861000 - 16:08:44
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 92.605000 - 16:08:48
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 96.787000 - 16:08:52
+Exiting
+
+C:\Users\Samuli\Documents\Git\DAPLink\test\stress_tests>c:\Python27\python.exe msd_remount_test.py
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.061000 - 16:09:20
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 22.702000 - 16:09:43
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 26.502000 - 16:09:47
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 30.425000 - 16:09:50
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 52.730000 - 16:10:13
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 56.583000 - 16:10:17
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 60.852000 - 16:10:21
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 64.779000 - 16:10:25
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 68.703000 - 16:10:29
+Thread 0 exception board 0240000033514e450044500585d4000be981000097969900
+Exception in thread Thread-3:
+Traceback (most recent call last):
+  File "c:\Python27\lib\threading.py", line 801, in __bootstrap_inner
+    self.run()
+  File "c:\Python27\lib\threading.py", line 754, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "msd_remount_test.py", line 101, in msd_remount_main
+    raise Exception("Board remount timed out")
+Exception: Board remount timed out
+
+Exiting
+
+C:\Users\Samuli\Documents\Git\DAPLink\test\stress_tests>c:\Python27\python.exe msd_remount_test.py
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.089000 - 16:15:55
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 3.566000 - 16:15:59
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 27.058000 - 16:16:22
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 30.838000 - 16:16:26
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 35.491000 - 16:16:31
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 57.950000 - 16:16:53
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 81.620000 - 16:17:17
+Thread 0 exception board 0240000033514e450044500585d4000be981000097969900
+Exception in thread Thread-3:
+Traceback (most recent call last):
+  File "c:\Python27\lib\threading.py", line 801, in __bootstrap_inner
+    self.run()
+  File "c:\Python27\lib\threading.py", line 754, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "msd_remount_test.py", line 101, in msd_remount_main
+    raise Exception("Board remount timed out")
+Exception: Board remount timed out
+
+Exiting
+
+C:\Users\Samuli\Documents\Git\DAPLink\test\stress_tests>c:\Python27\python.exe msd_remount_test.py
+Exiting
+
+C:\Users\Samuli\Documents\Git\DAPLink\test\stress_tests>c:\Python27\python.exe msd_remount_test.py
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.059000 - 18:47:02
+Thread 0 exception board 0240000033514e450044500585d4000be981000097969900
+Exception in thread Thread-3:
+Traceback (most recent call last):
+  File "c:\Python27\lib\threading.py", line 801, in __bootstrap_inner
+    self.run()
+  File "c:\Python27\lib\threading.py", line 754, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "msd_remount_test.py", line 101, in msd_remount_main
+    raise Exception("Board remount timed out")
+Exception: Board remount timed out
+
+Exiting
+
+C:\Users\Samuli\Documents\Git\DAPLink\test\stress_tests>c:\Python27\python.exe msd_remount_test.py
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.058000 - 18:52:45
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 23.854000 - 18:53:08
+Thread 0 exception board 0240000033514e450044500585d4000be981000097969900
+Exception in thread Thread-3:
+Traceback (most recent call last):
+  File "c:\Python27\lib\threading.py", line 801, in __bootstrap_inner
+    self.run()
+  File "c:\Python27\lib\threading.py", line 754, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "msd_remount_test.py", line 101, in msd_remount_main
+    raise Exception("Board remount timed out")
+Exception: Board remount timed out
+
+Exiting
+
+C:\Users\Samuli\Documents\Git\DAPLink\test\stress_tests>c:\Python27\python.exe msd_remount_test.py
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.082000 - 19:05:27
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 23.368000 - 19:05:50
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 26.979000 - 19:05:54
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 30.802000 - 19:05:58
+Drive F: dismount
+Remount complete as F:
+Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 34.546000 - 19:06:01
+Drive F: dismount
+Exiting
