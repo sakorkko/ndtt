@@ -476,30 +476,24 @@ Same functionality over USBIP, a bit longer loading times as expected.
 Virtualhere server running on the masters usb port, virtualhere client on a windows 10. Connection over local network.
 
 ##### msd_remount_test
-```
-c:\Python27\python.exe msd_remount_test.py
-Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 0.044000 - 07:43:48
-Drive F: dismount
-Remount complete as F:
-Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 23.753000 - 07:44:12
-Drive F: dismount
-Remount complete as F:
-Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 47.920000 - 07:44:36
-Drive F: dismount
-Remount complete as F:
-Triggering remount for 0 F: - 0240000033514e450044500585d4000be981000097969900 at 70.933000 - 07:44:59
-Exiting
-```
+These are in a separate file called nanopineo-virtualhere-usbip.txt
+The tests themselves varied quite a lot so I took them many times.
 ##### cdc_stress_test
 ```
 c:\Python27\python.exe cdc_stress_test.py
-Thread 0 on loop          0 at 0.170000 - 07:43:35 - port COM3
-Thread 0 on loop         10 at 0.765000 - 07:43:35 - port COM3
-Thread 0 on loop         20 at 1.354000 - 07:43:36 - port COM3
-Thread 0 on loop         30 at 1.943000 - 07:43:36 - port COM3
-Thread 0 on loop         40 at 2.536000 - 07:43:37 - port COM3
-Exiting
-
+Thread 0 on loop          0 at 0.139000 - 16:02:39 - port COM3
+Thread 0 on loop         10 at 0.735000 - 16:02:40 - port COM3
+Thread 0 on loop         20 at 1.347000 - 16:02:40 - port COM3
+Thread 0 on loop         30 at 1.995000 - 16:02:41 - port COM3
+Thread 0 on loop         40 at 2.613000 - 16:02:42 - port COM3
+Thread 0 on loop         50 at 3.322000 - 16:02:42 - port COM3
+Thread 0 on loop         60 at 3.985000 - 16:02:43 - port COM3
+Thread 0 on loop         70 at 4.700000 - 16:02:44 - port COM3
+Thread 0 on loop         80 at 5.356000 - 16:02:44 - port COM3
+Thread 0 on loop         90 at 6.052000 - 16:02:45 - port COM3
+Thread 0 on loop        100 at 6.944000 - 16:02:46 - port COM3
+Thread 0 on loop        110 at 7.793000 - 16:02:47 - port COM3
+Thread 0 on loop        120 at 8.592000 - 16:02:47 - port COM3
 ```
 Same functionality over USBIP, a considerably longer loading times on remount test.
 
