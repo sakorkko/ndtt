@@ -380,12 +380,6 @@ Thread 0 on loop        120 at 1.378000 - 15:37:20 - port COM3
 ```
 Some problems with the hid test, sometimes worked when replugged the cable and other times not.
 
-### Test on linux machine
-Issues running the test at all on linux. Does not crash, but does not print anything.
-```
-No handlers could be found for logger "mbedls.platform_database"
-No handlers could be found for logger "mbedls.lstool_base"
-```
 ### Test on windows machine over linux USBIP server
 Virtualhere server running on debian stretch, client on a windows 10. Connection over local network.
 
@@ -478,6 +472,8 @@ Virtualhere server running on the masters usb port, virtualhere client on a wind
 ##### msd_remount_test
 These are in a separate file called nanopineo-virtualhere-usbip.txt
 The tests themselves varied quite a lot so I took them many times.
+Unfortunately my version of armbian did not come with usbmon so I could not investigate the dodgy virtualhere connection.
+
 ##### cdc_stress_test
 ```
 c:\Python27\python.exe cdc_stress_test.py
@@ -495,7 +491,30 @@ Thread 0 on loop        100 at 6.944000 - 16:02:46 - port COM3
 Thread 0 on loop        110 at 7.793000 - 16:02:47 - port COM3
 Thread 0 on loop        120 at 8.592000 - 16:02:47 - port COM3
 ```
-Same functionality over USBIP, a considerably longer loading times on remount test.
+
+## Linux builtin USBIP drivers
+
+### Test on linux machine
+
+##### msd_remount_test
+```
+
+```
+##### cdc_stress_test
+```
+
+```
+### Test on linux machine over linux  server
+Server running on nanopineo armbian, client on debian stretch. Connection over local network.
+
+##### msd_remount_test
+```
+
+```
+##### cdc_stress_test
+```
+
+```
 
 # Roadblocks
 We updated the master to a fresh armbian install with kernel version 4.11.2, as eBPF supports connections to traffic control classifiers. It resulted in a kernel error. Kernel error occurs on both mainline armbian and neo ubuntu xenial. We will have to see if kernel version 3.x is enough for the project.
@@ -514,6 +533,7 @@ No handlers could be found for logger "mbedls.platform_database"
 No handlers could be found for logger "mbedls.lstool_base"
 ```
 Solution was to mount the daplink drive manually.
+
 # Useful resources
 Well explained examples for various network tools in linux:
 * http://lartc.org/howto/index.html
