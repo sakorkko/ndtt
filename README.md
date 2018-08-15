@@ -316,6 +316,7 @@ TODO: Add server configuration to only use tcp 7575 for to get past policer on t
 Performance testing will be updated later, but at the moment the initial connection seems to take atleast 20 seconds everytime.
 
 No such issues running the server on a linux laptop.
+Edit: Not stable, device drops after some time. Have not got a solution for this at the moment.
 
 # DAPLink
 * https://github.com/ARMmbed/DAPLink/tree/master/test/stress_tests
@@ -600,7 +601,7 @@ Issues running the test at all on linux. Does not crash, but does not print anyt
 No handlers could be found for logger "mbedls.platform_database"
 No handlers could be found for logger "mbedls.lstool_base"
 ```
-Solution was to mount the daplink drive manually.
+Solution was to mount the daplink drive manually. Can be done with for example Lightweight device mounter.
 
 # Useful resources
 Well explained examples for various network tools in linux:
